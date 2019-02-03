@@ -1,5 +1,6 @@
-// Este es el punto de entrada de tu aplicacion
+import {changeTmp} from './lib/controller.js';
 
-import { myFunction } from './lib/index.js';
-
-myFunction();
+window.addEventListener('load', () => { 
+    changeTmp(window.location.hash)
+    if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
+  });
