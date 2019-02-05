@@ -1,0 +1,140 @@
+
+/* CSS simple para mostrar - JENI*/
+
+/* .enter-data{
+    height: 30px;
+    margin: 11px; 
+} */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: 100%;
+  height: 100px;
+ background-color: #9B5AA9	
+}
+
+.header-text{
+    color:#fff
+}
+
+.h1{
+  text-align: center; 
+  letter-spacing: 0.3em;
+  width: 100%;
+  font-size: 50px;
+}
+
+h2{
+  color: #000;
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 0.3em;
+}
+
+body {   
+    font-family: 'Open Sans', sans-serif; 
+  }  
+
+.login-form {
+  padding: 5px;
+  border: 1px black;
+  width: 100%;
+  margin: auto;
+  min-width: 200px;
+  max-width: 350px;
+}
+.login-form img{
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 30%
+}
+
+.login-form label {
+  margin-right: 60px;
+}
+
+.login-form > fieldset {
+  display: grid;
+  grid-template-columns: 100px auto;
+  border: none;
+}
+
+.login-form input {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+footer{
+  position: fixed;
+  display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;  
+   background-color: #E9ACF6
+}
+footer p{
+  text-align: center;
+  color:#000;
+}
+.btn-social-net{
+  cursor: pointer;
+  font-weight: bold;
+  height: 65px;
+  width: 65px;
+  padding-bottom: 2px; 
+  padding-right: 15px;
+  border: none;
+}
+
+#btn-facebook {
+  background: url("img/facebook2.png") no-repeat scroll;
+  margin-left: 18%;
+}
+
+#btn-google {
+  background: url("img/google.png") no-repeat; 
+  margin-left: 18%;
+}
+.button-send{
+  border-radius: 10px;
+  background-color: #E9ACF6;
+  opacity: 0.8;  
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px 30px;
+}
+
+.button-send:hover{  
+  background-color: #E9ACF6;
+  opacity: 1;
+}
+
+.button-send:active{
+ transform: scale(0.95)
+}
+
+@media (max-width:480px){
+  .login-form{
+    width: 90%
+  }
+  .login-form img{
+    width: 20%
+  }
+}
+@media (max-width:768px){
+  .login-form{
+    width: 100%
+  }  
+}
+
+
