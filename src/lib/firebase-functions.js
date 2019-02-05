@@ -39,7 +39,7 @@ const btnRegister = (element) => {
     window.location.hash = '#/session';
 };
 
-const showPost = (message) => {
-    let posts = message.querySelector("#text-post").value;
-    createDocument(posts);
-}
+// const showPost = (message) => {
+//     let posts = message.querySelector("#text-post").value;
+//     createDocument(posts);
+// }

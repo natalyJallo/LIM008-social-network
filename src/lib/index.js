@@ -105,18 +105,18 @@ export const validateloginForm = (email, password) => {
     return false;
  };
 
-export const createDocument = (post) => {
-  let postsUser = post;
-  let postsText = firestore.collection('posts');
-  const data = {
-    postsText: postsUser,
-    autor: postAutor,
-    date: firebase.firestore.FieldValue.serverTimestamp()
-  }
-  postsText.add(data).then(result => {
-    console.log('Creo el documento en la collecion de posts');
-    })
-  .catch(error => {
-    console.error(postsText);
-  });
-}
+// export const createDocument = (post) => {
+//   let postsUser = post;
+//   let postsText = firestore.collection('posts');
+//   const data = {
+//     postsText: postsUser,
+//     autor: postAutor,
+//     date: firebase.firestore.FieldValue.serverTimestamp()
+//   }
+//   postsText.add(data).then(result => {
+//     console.log('Creo el documento en la collecion de posts');
+//     })
+//   .catch(error => {
+//     console.error(postsText);
+//   });
+// }
