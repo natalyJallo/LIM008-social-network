@@ -56,6 +56,7 @@ export const viewTemplates = {
                 <p id="error-text-sign-up"></p>
                 </div>`
                 const element2 = document.createElement('form');
+                element2.setAttribute('class', 'form-signUp');
                 element2.innerHTML = tmpl;
                 
                 const btnSendData = element2.querySelector('#send-data-btn');
