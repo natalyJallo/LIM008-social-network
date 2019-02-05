@@ -10,9 +10,7 @@ const viewTemp = (routers) => {
  if (routers) {
      router = routers.substr(2, routers.length - 2);
  } else {
-     router = 'home';
-     router = 'signUp';
-     router = 'signIn';
+     router = 'different';
  };
  const container = document.getElementById('container');
  container.innerHTML = '';

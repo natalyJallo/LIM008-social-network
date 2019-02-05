@@ -1,16 +1,17 @@
 import { ingresoFacebook, ingresoGoogle } from '../firebase/firebase-auth.js';
-import {loginCall, loginCheckIn, registerAcccount, validateloginForm} from './index.js';
+import {loginCall, loginCheckIn, registerAcccount, validateloginForm,createDocument} from './index.js';
 export {btnOnclick};
 export {btnGoogle};
 export {btnFacebook};
 export {btnRegister};
+export {showPost};
 
 const btnGoogle = () => {
-document.getElementById('btn-facebook').addEventListener('click', ingresoFacebook,false);
+ingresoGoogle();
 loginCheckIn();
 };
 const btnFacebook = () => {
- document.getElementById('btn-google').addEventListener('click',ingresoGoogle,false);
+ingresoFacebook();
 loginCheckIn();
 };
 
@@ -37,3 +38,8 @@ const btnRegister = (element) => {
     if (registerAcccount(emailSignUp, passwordVerif, nameSignUp, lastNameSignUp, nickNameSignUp, countrySignUp)) {}
     window.location.hash = '#/session';
 };
+
+const showPost = (message) => {
+    let posts = message.querySelector("#text-post").value;
+    createDocument(posts);
+}

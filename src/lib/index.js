@@ -42,6 +42,8 @@ firebase.auth().signOut().then(function() {
   });
 };
 
+const firestore = firebase.firestore();
+
 /* Funcion de registro de Firebase*/
 const registerAcccount = (email, password, name, lastName, nickName, country) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -63,7 +65,6 @@ const registerAcccount = (email, password, name, lastName, nickName, country) =>
   alert('Error :' + errorMessage);
   // ...
   });
-  const firestore = firebase.firestore();
   let emailUser = email;
   let passwordUser = password;
   let nameUser = name;
@@ -81,10 +82,10 @@ const registerAcccount = (email, password, name, lastName, nickName, country) =>
   }
   console.log(data);
   users.add(data)
-  .then(function(result) {
+  .then(result => {
     console.log("Document written with ID: ", result.id);
 })
-.catch(function(error) {
+.catch(error => {
     console.error(users);
 });
 };
@@ -104,3 +105,18 @@ export const validateloginForm = (email, password) => {
     return false;
  };
 
+export const createDocument = (post) => {
+  let postsUser = post;
+  let postsText = firestore.collection('posts');
+  const data = {
+    postsText: postsUser,
+    autor: postAutor,
+    date: firebase.firestore.FieldValue.serverTimestamp()
+  }
+  postsText.add(data).then(result => {
+    console.log('Creo el documento en la collecion de posts');
+    })
+  .catch(error => {
+    console.error(postsText);
+  });
+}

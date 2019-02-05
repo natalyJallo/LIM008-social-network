@@ -57,6 +57,9 @@ body {
   background-position: 4px -18px;
 }
 
+.home {
+  margin: auto;
+}
 .img-user {
   width: 20px;
   height: 20px;
@@ -136,6 +139,32 @@ footer p{
   height: 20px;
   display: block;
   margin-left: 180px;
+}
+
+.post {
+  width: 300px;
+  height: 200px;
+  margin: auto;
+}
+.table-post {
+  width: 280px;
+  height: 180px;
+  font-size: 13px;
+  border: 1px solid black;
+}
+.fila {
+  width: 270px;
+  height: 120px;
+  margin: 5px;
+  padding-left: 10px;
+}
+.fila1 {
+  width: 250px;
+  height: 40px;
+  padding-left: 20px;
+}
+button {
+ margin-right: 10px;
 }
 
 @media (max-width:480px){
