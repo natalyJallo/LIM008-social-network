@@ -16,14 +16,12 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
   });
 };
 
-//para observar los datos del usuario que inició sesión.
 const loginCheckIn = () => {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       const user = firebase.auth().currentUser;
-      console.log(user);
-      //¿porqué le pones otra condicional?
+      console.log(user); 
       if (user !== null) {
         const emailUser = user.email;
         window.location.hash = '#/home'
@@ -49,7 +47,6 @@ firebase.auth().signOut().then(function() {
 const registerAcccount = (email, password, name) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(result => {
-    //te prometí que crearias un usuario y email, si lo cumples muestra eso en la url
     const configuracion = {
       url: 'http://127.0.0.1:5500/src/'
     }
@@ -69,7 +66,7 @@ const registerAcccount = (email, password, name) => {
   });
 };
 
-// Funcion de validar si el correo y contraseña se han ingresado bien al iniciar sesion
+// Funcion para validar correo y contraseña.
 export const validateloginForm = (email, password) => {
     const regEx = /\S+@\S+\.\S+/;
     if (password !== '' & email !== '') {
@@ -83,7 +80,3 @@ export const validateloginForm = (email, password) => {
     }
     return false;
  };
-
-/*Resumen: Aquí va las funciones de firebase: inicio de sesión con firebase, cerrar sesión 
-con Firebase, validaciones de usuario y contraseña para formulario de registro e inicio de sesión
-y para traer los datos del usuario cuando inicia sesión con Firebasae*/
