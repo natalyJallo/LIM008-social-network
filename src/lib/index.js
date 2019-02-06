@@ -15,12 +15,15 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
   alert('Error :' + errorMessage)
   });
 };
+//para observar los datos del usuario que inició sesión.
 
 const loginCheckIn = () => {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       const user = firebase.auth().currentUser;
+      console.log(user);
+      //¿porqué le pones otra condicional?
       if (user !== null) {
         const emailUser = user.email;
         window.location.hash = '#/home'
@@ -28,6 +31,7 @@ const loginCheckIn = () => {
       }
     } else {
       console.log('sesion no iniciada')
+
       // User is signed out.
       // ...
     }
@@ -43,6 +47,7 @@ firebase.auth().signOut().then(function() {
 };
 
 /* Funcion de registro de Firebase*/
+
 const registerAcccount = (email, password, name, lastName, nickName, country) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(result => {
@@ -103,4 +108,3 @@ export const validateloginForm = (email, password) => {
     }
     return false;
  };
-

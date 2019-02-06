@@ -37,3 +37,5 @@ const btnRegister = (element) => {
     if (registerAcccount(emailSignUp, passwordVerif, nameSignUp, lastNameSignUp, nickNameSignUp, countrySignUp)) {}
     window.location.hash = '#/session';
 };
+
+

@@ -15,6 +15,7 @@
 top: 0px;
 bottom: 0px;
 }
+
 .header-text{
     color:#fff
 }
@@ -36,6 +37,7 @@ h2{
 body {   
     font-family: 'Open Sans', sans-serif; 
   }  
+
 .form-signUp {
   background-image: url(img/58930.jpg);
   background-size: cover;
@@ -82,11 +84,13 @@ body {
   width: 20px;
   height: 20px;
 }
+
 .login-form > fieldset {
   display: grid;
   grid-template-columns: 100px auto;
   border: none;
 }
+
 
 /* .login-form input {
   display: block;
@@ -94,6 +98,7 @@ body {
   padding: 10px;
   margin: 20px 0;
 } */
+
 
 footer{
   position: fixed;
@@ -161,6 +166,7 @@ footer p{
   display: block;
   margin-left: 180px;
 }
+
 
 @media (max-width:480px){
   .login-form{

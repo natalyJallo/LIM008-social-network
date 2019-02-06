@@ -69,6 +69,7 @@ export const viewTemplates = {
     home : () => {
         const tmpl = `<div class="log-out-form" id="log-out">
             <h1> Bienvenido</h1>
+
             <p id="welcome-text">Posts: </p>
             <button id="log-out-btn" class="button-send">Salir</button>
             <div>
@@ -83,10 +84,8 @@ export const viewTemplates = {
             closeSessionCall();
             window.location.hash = '#/signIn'
             });
-
             const btnPost = section.querySelector('#btn-posts');
-            btnPost.addEventListener('click', ()  => {
-            
+            btnPost.addEventListener('click', ()  => {            
             });
             return section;
         }
