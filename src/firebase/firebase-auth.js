@@ -16,12 +16,14 @@ var config = {
         firebase.auth().signInWithPopup(provider).then(function (result) {
             var token = result.credential.accessToken;
             var user = result.user;
-            console.log(user) 
+            console.log(user)   
+
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             var email = error.email;
             var credential = error.credential;
+
             // dé dónde sacó el texto, si quiero ingresar una contraeña diferente a mi facebook me dirá ue ya existe
             if (errorCode === 'auth/account-exists-with-different-credential') {
                 console.log('Estas usando la misma cuenta');
@@ -42,6 +44,7 @@ const ingresoGoogle = () => {
             console.log("google funciona aqui");
             var email = error.email;
             var credential = error.credential;
+
            //cuenta existe con credencial diferente
             if (errorCode === 'auth/account-exists-with-different-credential') {
                 console.log('Estas usando la misma cuenta');

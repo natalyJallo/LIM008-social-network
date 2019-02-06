@@ -7,8 +7,9 @@ export const viewTemplates = {
                 <img src="img/login5.png" class="img-login">
                 <h2>Login</h2>
                 <fieldset>
-                <label for='input-email'>Email</label>
-                <input type="email" id="input-email" placeholder="email" required></input>
+                <div class='login-user left-addon'>
+                <label for='input-email'></label>
+                <input type="email" id="input-email" class='input-email' placeholder="email" required></input></div>
                 <label for='input-password'>Password</label>
                 <input type="password" id="input-password" placeholder="contraseña" minlength="6" required></input>
                 </fieldset>
@@ -55,6 +56,7 @@ export const viewTemplates = {
                 <p id="error-text-sign-up"></p>
                 </div>`
                 const element2 = document.createElement('form');
+                element2.setAttribute('class', 'form-signUp');
                 element2.innerHTML = tmpl;
                 
                 const btnSendData = element2.querySelector('#send-data-btn');
@@ -67,15 +69,23 @@ export const viewTemplates = {
     home : () => {
         const tmpl = `<div class="log-out-form" id="log-out">
             <h1> Bienvenido</h1>
-            <p id="welcome-text">Perfil: </p>
-            <button id="log-out-btn" class="button-send"> Salir de mi Cuenta</button>
+
+            <p id="welcome-text">Posts: </p>
+            <button id="log-out-btn" class="button-send">Salir</button>
+            <div>
+            <textarea class="box-post" name="" id="" cols="30" rows="10"></textarea>
+            <button id="btn-posts" class="btn-post">Publicar</button>
+            </div>
             </div>`
             const section = document.createElement('section');
             section.innerHTML = tmpl;
-            const btnCloseSession = section.querySelector('#log-out-btn');            
+            const btnCloseSession = section.querySelector('#log-out-btn');
             btnCloseSession.addEventListener('click', ()  => {
             closeSessionCall();
             window.location.hash = '#/signIn'
+            });
+            const btnPost = section.querySelector('#btn-posts');
+            btnPost.addEventListener('click', ()  => {            
             });
             return section;
         }
