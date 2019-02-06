@@ -58,7 +58,7 @@ export const viewTemplates = {
                 element2.innerHTML = tmpl;
                 
                 const btnSendData = element2.querySelector('#send-data-btn');
-                btnSendData.addEventListener('click', () =>{
+                btnSendData.addEventListener('click', () => {
                     btnRegister(element2);
                     window.location.hash = '#/signIn';
                 });
