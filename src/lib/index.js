@@ -15,8 +15,8 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
   alert('Error :' + errorMessage)
   });
 };
-
 //para observar los datos del usuario que inició sesión.
+
 const loginCheckIn = () => {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -30,7 +30,8 @@ const loginCheckIn = () => {
         console.log('sesion iniciada')
       }
     } else {
-      console.log('usuario no registrado')
+      console.log('sesion no iniciada')
+
       // User is signed out.
       // ...
     }
@@ -46,10 +47,10 @@ firebase.auth().signOut().then(function() {
 };
 
 /* Funcion de registro de Firebase*/
-const registerAcccount = (email, password, name) => {
+
+const registerAcccount = (email, password, name, lastName, nickName, country) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(result => {
-    //te prometí que crearias un usuario y email, si lo cumples muestra eso en la url
     const configuracion = {
       url: 'http://127.0.0.1:5500/src/'
     }
@@ -67,6 +68,30 @@ const registerAcccount = (email, password, name) => {
   alert('Error :' + errorMessage);
   // ...
   });
+  const firestore = firebase.firestore();
+  let emailUser = email;
+  let passwordUser = password;
+  let nameUser = name;
+  let lastNameUser = lastName;
+  let nickNameUser = nickName;
+  let countryUser = country;
+  let users = firestore.collection('users');
+  let data = {
+    email: emailUser,
+    password: passwordUser,
+    name: nameUser,
+    lastName: lastNameUser,
+    nickName: nickNameUser,
+    country: countryUser,
+  }
+  console.log(data);
+  users.add(data)
+  .then(function(result) {
+    console.log("Document written with ID: ", result.id);
+})
+.catch(function(error) {
+    console.error(users);
+});
 };
 
 // Funcion de validar si el correo y contraseña se han ingresado bien al iniciar sesion
@@ -83,7 +108,3 @@ export const validateloginForm = (email, password) => {
     }
     return false;
  };
-
-/*Resumen: Aquí va las funciones de firebase: inicio de sesión con firebase, cerrar sesión 
-con Firebase, validaciones de usuario y contraseña para formulario de registro e inicio de sesión
-y para traer los datos del usuario cuando inicia sesión con Firebasae*/
