@@ -53,13 +53,28 @@ export const logInGoogle = () => {
 /* Funcion de llamada de click de mi boton de inicio de sesión, invoco los values de los input de contraseña e email + mensajes de error
 por defecto de Firebase*/
 
-export const logInEmail = (email, password) => {
+export const logInFireb = (email, password, error) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
     const errorCode = error.code;  
     const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
+    error.innerHTML = 'Contraseña o email incorrectos';
   });
 };
 
- 
+export const loginCheck = () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      // User is signed in.
+      const user = firebase.auth().currentUser;
+      if (user !== null) {
+        const emailUser = user.email;
+        window.location.hash = '#/home';
+        console.log('sesion iniciada');
+      }
+    } else {
+      console.log('sesion no iniciada')
+      // User is signed out.
+      // ...
+    }
+  });
+};

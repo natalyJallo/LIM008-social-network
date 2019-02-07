@@ -1,5 +1,4 @@
-import {logInFacebook, logInGoogle} from '../firebase/firebase.js';
-import {logInClick} from './controller.js';
+import {logInFacebook, logInGoogle, logInEmail} from '../firebase/firebase.js';
 
 const container = document.createElement('form');
 
@@ -14,8 +13,8 @@ export const loginFunction = {
             <label for='input-password'>Password</label>
             <input type="password" id="input-password" placeholder="contraseña" minlength="6" required></input>
           </fieldset>
-          <a id="log-in-btn" class="button-send" href="#/profile"> Ingresar</a>
-          <a id="sign-up-btn" class="button-send" href="#/signup" >Unirme</a>
+          <a id="log-in-btn" class="button-send"> Ingresar</a>
+          <a id="sign-up-btn" class="button-send" >Unirme</a>
           <p id="error-text"></p>
           <div>
             <button type="button" id="btn-facebook" class="btn-social-net">
@@ -40,13 +39,15 @@ export const loginFunction = {
     container
       .querySelector('#log-in-btn')
       .addEventListener('click', () => {
-        logInClick();
-
+       logInEmail(container);
       });
 
-    const abc = document.getElementById('container');
-    abc.appendChild(container);
-    
+    container
+      .querySelector('#sign-up-btn')
+      .addEventListener('click', () => {
+        window.location.hash = '#/signUp';
+      });
+      
     return container;
   },
     
