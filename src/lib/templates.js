@@ -1,8 +1,8 @@
-import {closeSessionCall } from './index.js'
-import {btnFacebook, btnGoogle, btnOnclick, btnRegister} from './firebase-functions.js';
+import { closeSessionCall } from './index.js';
+import { btnFacebook, btnGoogle, btnOnclick, btnRegister } from './firebase-functions.js';
 
 export const viewTemplates = {
-    signIn : () => { 
+signIn: () => {
         const tmpl = `<div id="login-form" class="login-form">
                 <img src="img/login5.png" class="img-login">
                 <h2>Login</h2>
@@ -19,31 +19,32 @@ export const viewTemplates = {
                 <button type="button" id="btn-facebook" class="btn-social-net">
                 <button type="button" id="btn-google" class="btn-social-net">
                 </div>`
-                const element = document.createElement('form');
-                element.innerHTML = tmpl;
 
-                const btn = element.querySelector('#log-in-btn');
-                btn.addEventListener('click', () => {
-                    btnOnclick(element);
-                });
+        const element = document.createElement('form');
+        element.innerHTML = tmpl;
 
-                const btnLoginGoogle = element.querySelector('#btn-google');
-                btnLoginGoogle.addEventListener('click',() => {
-                    btnGoogle();
-                });
-                 
-                const btnLoginFacebook = element.querySelector('#btn-facebook');
-                btnLoginFacebook.addEventListener('click',() => {
-                    btnFacebook();
-                });
-                const btnSignupLogin = element.querySelector('#sign-up-btn');
-                btnSignupLogin.addEventListener('click',() => {
-                    window.location.hash = '#/signUp';
-                });
-                return element;
-                },
+        const btn = element.querySelector('#log-in-btn');
+        btn.addEventListener('click', () => {
+            btnOnclick(element);
+        });
 
-    signUp : () => {
+        const btnLoginGoogle = element.querySelector('#btn-google');
+        btnLoginGoogle.addEventListener('click', () => {
+            btnGoogle();
+        });
+
+        const btnLoginFacebook = element.querySelector('#btn-facebook');
+        btnLoginFacebook.addEventListener('click', () => {
+            btnFacebook();
+        });
+        const btnSignupLogin = element.querySelector('#sign-up-btn');
+        btnSignupLogin.addEventListener('click', () => {
+            window.location.hash = '#/signUp';
+        });
+        return element;
+    },
+
+    signUp: () => {
         const tmpl = `<div class="login-form" id="sign-up">
                 <input type="text" id="enter-name" class="enter-data" placeholder="Nombres" required> 
                 <input type="text" id="enter-lastname" class="enter-data" placeholder="Apellidos" required> 
@@ -55,18 +56,18 @@ export const viewTemplates = {
                 <button type="button" id="send-data-btn" class="button-send"> Registrarme</button>
                 <p id="error-text-sign-up"></p>
                 </div>`
-                const element2 = document.createElement('form');
-                element2.setAttribute('class', 'form-signUp');
-                element2.innerHTML = tmpl;
-                
-                const btnSendData = element2.querySelector('#send-data-btn');
-                btnSendData.addEventListener('click', () => {
-                    btnRegister(element2);
-                    window.location.hash = '#/signIn';
-                });
-                return element2;
-            },
-    home : () => {
+        const element2 = document.createElement('form');
+        element2.setAttribute('class', 'form-signUp');
+        element2.innerHTML = tmpl;
+
+        const btnSendData = element2.querySelector('#send-data-btn');
+        btnSendData.addEventListener('click', () => {
+            btnRegister(element2);
+            window.location.hash = '#/signIn';
+        });
+        return element2;
+    },
+    home: () => {
         const tmpl = `<div class="log-out-form" id="log-out">
             <h1> Bienvenido</h1>
 
@@ -77,16 +78,16 @@ export const viewTemplates = {
             <button id="btn-posts" class="btn-post">Publicar</button>
             </div>
             </div>`
-            const section = document.createElement('section');
-            section.innerHTML = tmpl;
-            const btnCloseSession = section.querySelector('#log-out-btn');
-            btnCloseSession.addEventListener('click', ()  => {
+        const section = document.createElement('section');
+        section.innerHTML = tmpl;
+        const btnCloseSession = section.querySelector('#log-out-btn');
+        btnCloseSession.addEventListener('click', () => {
             closeSessionCall();
             window.location.hash = '#/signIn'
-            });
-            const btnPost = section.querySelector('#btn-posts');
-            btnPost.addEventListener('click', ()  => {            
-            });
-            return section;
-        }
+        });
+        const btnPost = section.querySelector('#btn-posts');
+        btnPost.addEventListener('click', () => {
+        });
+        return section;
+    }
 };
