@@ -6,10 +6,14 @@
   box-sizing: border-box;
 }
 
-header {
+/* header {
   width: 100%;
   height: 100px;
  background-color: #9B5AA9	
+} */
+.container {
+top: 0px;
+bottom: 0px;
 }
 
 .header-text{
@@ -34,23 +38,51 @@ body {
     font-family: 'Open Sans', sans-serif; 
   }  
 
+.form-signUp {
+  background-image: url(img/58930.jpg);
+  background-size: cover;
+  padding-top: 40px;
+  height: 560px;
+}
 .login-form {
-  padding: 5px;
   border: 1px black;
   width: 100%;
   margin: auto;
-  min-width: 200px;
-  max-width: 350px;
-}
-.login-form img{
-  display: block;
-  margin: auto;
-  margin-bottom: 15px;
-  width: 30%
+  min-width: 250px;
+  max-width: 380px;
+  background-color: #E9ACF6;
+  border-radius: 12px;
+  height: 500px;
+  padding-top: 30px;
 }
 
-.login-form label {
+/* .login-form label {
   margin-right: 60px;
+} */
+.input-email {
+  background: url(img/usuario-forma1.png) no-repeat scroll 0 0 transparent;
+  border: 1px solid #BFBFBF;
+  color: #BFBFBF;
+  padding: 5px 5px 5px 25px;
+  width: 230px;
+  margin-bottom: 20px;
+  background-position: 4px -18px;
+}
+.enter-data {
+  border-radius: 8px;
+  width: 220px;
+  height: 35px;
+  display: block;
+  margin: 20px 80px;
+  padding-left: 10px;
+  color: #9C9797;
+}
+.name {
+  margin-top: 100px;-
+}
+.img-user {
+  width: 20px;
+  height: 20px;
 }
 
 .login-form > fieldset {
@@ -59,12 +91,14 @@ body {
   border: none;
 }
 
-.login-form input {
+
+/* .login-form input {
   display: block;
   width: 90%;
   padding: 10px;
   margin: 20px 0;
-}
+} */
+
 
 footer{
   position: fixed;
@@ -99,11 +133,16 @@ footer p{
 }
 .button-send{
   border-radius: 10px;
-  background-color: #E9ACF6;
-  opacity: 0.8;  
-  font-weight: bold;
-  font-size: 20px;
-  padding: 5px 30px;
+  background-color: #9D66A9;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-left: 130px;
+  margin-bottom: 30px;
+  width: 130px;
+  height: 35px;
+  color: #fff;
+  letter-spacing: 1.5px;
+  border: #9D66A9;
 }
 
 .button-send:hover{  
@@ -114,6 +153,20 @@ footer p{
 .button-send:active{
  transform: scale(0.95)
 }
+
+.box-post{
+  width: 200px;
+  height: 80px;
+  margin-left: 75px;
+}
+
+.btn-post {
+  width: 80px;
+  height: 20px;
+  display: block;
+  margin-left: 180px;
+}
+
 
 @media (max-width:480px){
   .login-form{
