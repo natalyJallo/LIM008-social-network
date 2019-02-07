@@ -1,6 +1,9 @@
-import {changeTmp} from './lib/controller.js';
+import {configFirebase} from './lib/firebase/firebase-auth.js';
+import {initRouter} from './lib/controller.js';
 
-window.addEventListener('load', () => { 
-    changeTmp(window.location.hash)
-    if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash)
-  });
+const init = () => {
+  configFirebase();
+  initRouter();
+};
+
+window.onload = init();
