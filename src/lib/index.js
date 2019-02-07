@@ -8,11 +8,13 @@ export const loginCall = (email, password, invalid) => {
     invalid.innerHTML = 'El email o la contraseña son inválidos.';
   });
 };
+// para observar los datos del usuario que inició sesión.
 
 export const loginCheckIn = () => {
   loginAuth((user) => {
     if (user) {
       const user = firebase.auth().currentUser;
+      console.log(user);
       if (user !== null) {
         const emailUser = user.email;
         window.location.hash = '#/home';
