@@ -1,5 +1,6 @@
 import {closeSessionCall } from './index.js';
-import {btnFacebook, btnGoogle, btnSignIn, btnRegister} from './view-controller.js';
+import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from './view-controller.js';
+import {getPosts} from './firebase/controller-firebase.js';
 
 export const viewTemplates = {
   signIn: () => { 
@@ -66,28 +67,61 @@ export const viewTemplates = {
     });
     return element2;
   },
-  home: () => {
+
+  postFunction: (elemPost) => {
+    const tmp = `<p> Name of User </p>
+                  <span> Content </span>
+                  <button class="" id="btn-edit-${elemPost.id}">
+                    Editar </button>
+                  <button class="" id="btn-deleted-${elemPost.id}">
+                    Eliminar </button>`;
+    const postContainer = document.createElement('article');
+    postContainer.innerHTML = tmp;
+    return postContainer;
+  },
+
+  home: (posts) => {
     const tmpl = `<div class="log-out-form" id="log-out">
-            <h1> Bienvenido</h1>
-            <p id="welcome-text">Posts: </p>
-            <button id="log-out-btn" class="button-send">Salir</button>
-            <div>
-            <textarea class="box-post" name="" id="" cols="30" rows="10"></textarea>
-            <button id="btn-posts" class="btn-post">Publicar</button>
-            </div>
-            </div>`;
+                  <h1> Bienvenido</h1>
+                  <button id="log-out-btn" class="button-send">Salir</button>
+                  </div>
+                  <div>
+                  <textarea class="box-post" name="post-input" id="post-input" cols="50" rows="10"></textarea>
+                  <select id='privacy-selector'>
+                    <option value="public">Publico</option>
+                    <option value="friends">Amigos</option>
+                  </select>
+                  <button id="btn-posts" class="btn-post">Publicar</button>
+                </div>
+                
+                <ul id= post-list> </ul>
+                
+                `;
     const section = document.createElement('section');
     section.innerHTML = tmpl;
+
+    const btnPost = section.querySelector('#btn-posts');
+    btnPost.addEventListener('click', () => {
+      postSubmit(section);
+    });
+
+    const postList = section.querySelector('#post-list');
+    posts.forEach(post => {
+      /* Aplico un forEach para añadir cada nota a mi ul aplicando la
+       funcion de templates ItemNote */
+      postList.appendChild(postFunction(post));
+    });
+
+    getPosts((posts) => {      
+      section.appendChild(posts);  
+    });
+
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
       window.location.hash = '#/signIn';
     });
 
-    const btnPost = section.querySelector('#btn-posts');
-    btnPost.addEventListener('click', () => {
-            
-    });
     return section;
   }
 };
