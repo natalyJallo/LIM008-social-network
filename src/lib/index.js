@@ -1,4 +1,4 @@
-import {signInUser, loginAuth, closeSignin, signUpUser} from './firebase/controller-firebase.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser} from './firebase/controller-firebase.js';
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
@@ -11,14 +11,11 @@ export const loginCall = (email, password, invalid) => {
 // para observar los datos del usuario que inició sesión.
 
 export const loginCheckIn = () => {
-  loginAuth((user) => {
-    if (user) {
-      const user = firebase.auth().currentUser;
-      console.log(user);
-      if (user !== null) {
-        const emailUser = user.email;
-        window.location.hash = '#/home';
-      }
+  loginAuth(() => {
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+      const emailUser = user.email;
+      window.location.hash = '#/home';
     } else {
       console.log('No esta registrado todavia');
     }
@@ -27,7 +24,7 @@ export const loginCheckIn = () => {
 
 /* Funcion de cerrar sesion de Firebase*/
 export const closeSessionCall = () => {
-  closeSignin().then(() => {
+  closeSignIn().then(() => {
   }).catch((error) => error);
 };
 
@@ -82,3 +79,23 @@ export const validateloginForm = (email, password) => {
   return false;
 };
 
+// export const showPostsList = (post, user, date) => {
+ 
+// };
+export const itemNote = (objNote) => {
+  const liElement = document.createElement('li');
+  liElement.innerHTML = `
+   <div>
+   <textarea id='content-field'></textarea>
+   <button id='btn-edit'>Editar</button>
+   <button id='btn-delete'>Eliminar</button>
+   </div>
+    `;
+  // agregando evento de click al btn eliminar una nota
+  liElement.querySelector(`#btn-edit-${objNote.id}`)
+    .addEventListener('click', () => (objNote));
+
+  liElement.querySelector(`#btn-deleted-${objNote.id}`)
+    .addEventListener('click', () => deletePost(objNote));
+  return liElement;
+};

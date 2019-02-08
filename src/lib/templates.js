@@ -1,5 +1,6 @@
 import {closeSessionCall } from './index.js';
-import {btnFacebook, btnGoogle, btnSignIn, btnRegister} from './view-controller.js';
+import {btnFacebook, btnGoogle, btnSignIn, btnRegister, addMessageDb} from './view-controller.js';
+import { getPost } from './firebase/controller-firebase.js';
 
 export const viewTemplates = {
   signIn: () => { 
@@ -72,22 +73,46 @@ export const viewTemplates = {
             <p id="welcome-text">Posts: </p>
             <button id="log-out-btn" class="button-send">Salir</button>
             <div>
-            <textarea class="box-post" name="" id="" cols="30" rows="10"></textarea>
-            <button id="btn-posts" class="btn-post">Publicar</button>
+            <div>
+              <h1> Mis posts </h1>
             </div>
-            </div>`;
+            <textarea id="content-field"> </textarea>
+            <button id="add">Agregar</button>
+            <select name="privacy" id="state-privacy">
+              <option value="public">Publico</option>
+              <option value="private">Privado</option>
+            </select>
+            </div>
+            </div>
+            <!-- notes -->
+            <section class="w-60 d-flex justify-content-center m-auto">
+            <ul class="w-100 demo-list-control mdl-list" id="notes-list">
+            </ul>
+            </section>`;
     const section = document.createElement('section');
     section.innerHTML = tmpl;
+    const ul = section.querySelector('#notes-list');
+    notes.forEach(note => {
+      ul.appendChild(itemNote(note));
+    });
+    getPost((notes) => {
+      section.innerHTML = '';        
+      section.appendChild(notes);  
+    });
+
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
       window.location.hash = '#/signIn';
     });
 
-    const btnPost = section.querySelector('#btn-posts');
+    const btnPost = section.querySelector('#content-field');
+    console.log(btnPost);
     btnPost.addEventListener('click', () => {
-            
+      addMessageDb(section);
+      window.location.hash = '#/signIn';
     });
+
     return section;
   }
 };

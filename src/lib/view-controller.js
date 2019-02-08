@@ -32,3 +32,22 @@ export const btnRegister = (element) => {
   if (registerAcccount(emailSignUp, passwordVerif, nameSignUp, lastNameSignUp, nickNameSignUp, countrySignUp)) {}
   window.location.hash = '#/session';
 };
+
+export const addMessageDb = (elemt) => {
+  event.preventDefault();
+  let textPost = elemt.querySelector('#content-field').value;
+  let select = elemt.querySelector('#state-privacy');
+  let valuePrivacy = select.value;
+  const firestore = firebase.firestore();
+  const idUser = firebase.auth().currentUser.uid;
+  let userPosts = firestore.collection('users').doc(idUser).set({
+    name: '' });;
+  addPost(textPost, valuePrivacy, userPosts)
+    .then(() => {
+      data.message = 'Post agregado';
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    }).catch(() => {
+      data.message = 'Lo sentimos, no se pudo agregar el post';
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    });
+};
