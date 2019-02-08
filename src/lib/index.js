@@ -17,8 +17,9 @@ export const loginCheckIn = () => {
       if (user !== null) {
         const emailUser = user.email;
         const uid = user.uid;
+        firebase.firestore().collection('users').add({uid: uid});
+
         window.location.hash = '#/home';
-        return uid;
       }
     } else {
       console.log('No esta registrado todavia');

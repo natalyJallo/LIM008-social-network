@@ -35,9 +35,11 @@ export const btnRegister = (element) => {
 };
 
 
+/* Aqui obtengo el txto publicado y la privacidad selecionada -JENI */
 export const postSubmit = (section) => {
   const content = section.querySelector('#post-input');
   const privacy = section.querySelector('#privacy-selector');
+  /* Añado la funcion para añadir estos datos a mis post - JENI */
   addPost(content.value, privacy.value)
     .then(() => {
       content.value = '';

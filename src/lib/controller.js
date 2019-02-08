@@ -19,7 +19,6 @@ const viewTemp = (routers) => {
   };
   const container = document.getElementById('container');
   container.innerHTML = '';
-  getPosts();
   container.appendChild(viewTemplates[router]());
 };
 

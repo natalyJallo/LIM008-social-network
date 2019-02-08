@@ -68,18 +68,6 @@ export const viewTemplates = {
     return element2;
   },
 
-  postFunction: (elemPost) => {
-    const tmp = `<p> Name of User </p>
-                  <span> Content </span>
-                  <button class="" id="btn-edit-${elemPost.id}">
-                    Editar </button>
-                  <button class="" id="btn-deleted-${elemPost.id}">
-                    Eliminar </button>`;
-    const postContainer = document.createElement('article');
-    postContainer.innerHTML = tmp;
-    return postContainer;
-  },
-
   home: (posts) => {
     const tmpl = `<div class="log-out-form" id="log-out">
                   <h1> Bienvenido</h1>
@@ -88,34 +76,39 @@ export const viewTemplates = {
                   <div>
                   <textarea class="box-post" name="post-input" id="post-input" cols="50" rows="10"></textarea>
                   <select id='privacy-selector'>
-                    <option value="public">Publico</option>
-                    <option value="friends">Amigos</option>
+                    <option value="Público">Publico</option>
+                    <option value="Amigos">Amigos</option>
                   </select>
                   <button id="btn-posts" class="btn-post">Publicar</button>
                 </div>
-                
-                <ul id= post-list> </ul>
-                
+                <ul id= "post-container"> </ul>
                 `;
     const section = document.createElement('section');
     section.innerHTML = tmpl;
 
+    /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos- jeni */
     const btnPost = section.querySelector('#btn-posts');
     btnPost.addEventListener('click', () => {
       postSubmit(section);
     });
+    /* CONTAINER de mis posts(ul) - JENI*/
+    const postContainer = section.querySelector('#post-container');    
 
-    const postList = section.querySelector('#post-list');
-    posts.forEach(post => {
-      /* Aplico un forEach para añadir cada nota a mi ul aplicando la
-       funcion de templates ItemNote */
-      postList.appendChild(postFunction(post));
+    getPosts((posts) => {  
+      postContainer.innerHTML = '';
+      posts.forEach(post => {
+        /* Aplico un forEach para añadir cada post  a mi ul aplicando la
+         funcion de templates notefunction */
+        console.log(post);
+        postContainer.appendChild(noteFunction(post));
+      });
     });
-
-    getPosts((posts) => {      
-      section.appendChild(posts);  
-    });
-
+    /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI*/
+    /*     getUserData((datas) => {
+      datas.forEach(data => {
+        noteFunction(data);
+      });
+    }); */
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
@@ -123,5 +116,23 @@ export const viewTemplates = {
     });
 
     return section;
-  }
+  },
+  
+
+};
+
+/* Funcion con el maquetado de mis post - JENI*/
+
+const noteFunction = (post) => {
+  const tmp = `
+  <p> ${post.uid} dice </p>
+    <span> ${post.content} </span>
+    <span> ${post.privacy} </span>
+    <button class="" id="btn-edit-${post.id}">
+      Editar </button>
+    <button class="" id="btn-deleted-${post.id}">
+      Eliminar </button>`;
+  let postList = document.createElement('div');
+  postList.innerHTML = tmp;
+  return postList;
 };
