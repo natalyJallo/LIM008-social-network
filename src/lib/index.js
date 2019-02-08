@@ -14,9 +14,11 @@ export const loginCheckIn = () => {
   loginAuth((user) => {
     if (user) {
       const user = firebase.auth().currentUser;
-      console.log(user);
       if (user !== null) {
         const emailUser = user.email;
+        const uid = user.uid;
+        firebase.firestore().collection('users').add({uid: uid});
+
         window.location.hash = '#/home';
       }
     } else {
@@ -63,7 +65,7 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
   }).then(function(result) {
     console.log('Document written with ID: ', result.id);
   }).catch((error) => {
-    console.log('no se agrego a lase de datos');
+    console.log('no se agrego a base de datos');
   });
 };
 

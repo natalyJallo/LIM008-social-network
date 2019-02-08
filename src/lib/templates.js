@@ -1,5 +1,6 @@
 import {closeSessionCall } from './index.js';
-import {btnFacebook, btnGoogle, btnSignIn, btnRegister} from './view-controller.js';
+import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from './view-controller.js';
+import {getPosts} from './firebase/controller-firebase.js';
 
 export const viewTemplates = {
   signIn: () => { 
@@ -66,28 +67,72 @@ export const viewTemplates = {
     });
     return element2;
   },
-  home: () => {
+
+  home: (posts) => {
     const tmpl = `<div class="log-out-form" id="log-out">
-            <h1> Bienvenido</h1>
-            <p id="welcome-text">Posts: </p>
-            <button id="log-out-btn" class="button-send">Salir</button>
-            <div>
-            <textarea class="box-post" name="" id="" cols="30" rows="10"></textarea>
-            <button id="btn-posts" class="btn-post">Publicar</button>
-            </div>
-            </div>`;
+                  <h1> Bienvenido</h1>
+                  <button id="log-out-btn" class="button-send">Salir</button>
+                  </div>
+                  <div>
+                  <textarea class="box-post" name="post-input" id="post-input" cols="50" rows="10"></textarea>
+                  <select id='privacy-selector'>
+                    <option value="Público">Publico</option>
+                    <option value="Amigos">Amigos</option>
+                  </select>
+                  <button id="btn-posts" class="btn-post">Publicar</button>
+                </div>
+                <ul id= "post-container"> </ul>
+                `;
     const section = document.createElement('section');
     section.innerHTML = tmpl;
+
+    /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos- jeni */
+    const btnPost = section.querySelector('#btn-posts');
+    btnPost.addEventListener('click', () => {
+      postSubmit(section);
+    });
+    /* CONTAINER de mis posts(ul) - JENI*/
+    const postContainer = section.querySelector('#post-container');    
+
+    getPosts((posts) => {  
+      postContainer.innerHTML = '';
+      posts.forEach(post => {
+        /* Aplico un forEach para añadir cada post  a mi ul aplicando la
+         funcion de templates notefunction */
+        console.log(post);
+        postContainer.appendChild(noteFunction(post));
+      });
+    });
+    /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI*/
+    /*     getUserData((datas) => {
+      datas.forEach(data => {
+        noteFunction(data);
+      });
+    }); */
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
       window.location.hash = '#/signIn';
     });
 
-    const btnPost = section.querySelector('#btn-posts');
-    btnPost.addEventListener('click', () => {
-            
-    });
     return section;
-  }
+  },
+  
+
+};
+
+/* Funcion con el maquetado de mis post - JENI*/
+
+const noteFunction = (post) => {
+  const tmp = `
+  <p> ${post.uid} dice </p>
+    <span> ${post.content} </span>
+    <span> ${post.privacy} </span>
+    <button class="" id="btn-edit-${post.id}">
+      Editar </button>
+    <button class="" id="btn-deleted-${post.id}">
+      Eliminar </button>`;
+  let postList = document.createElement('div');
+  postList.innerHTML = tmp;
+  return postList;
 };

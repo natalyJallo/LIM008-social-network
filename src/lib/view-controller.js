@@ -1,5 +1,6 @@
 import { ingresoFacebook, ingresoGoogle} from '../lib/firebase/firebase-auth.js';
 import {loginCall, loginCheckIn, registerAcccount, validateloginForm} from './index.js';
+import {addPost} from './firebase/controller-firebase.js';
 
 export const btnGoogle = () => {
   ingresoGoogle();
@@ -31,4 +32,20 @@ export const btnRegister = (element) => {
   let passwordVerif = element.querySelector('#re-enter-psw').value;
   if (registerAcccount(emailSignUp, passwordVerif, nameSignUp, lastNameSignUp, nickNameSignUp, countrySignUp)) {}
   window.location.hash = '#/session';
+};
+
+
+/* Aqui obtengo el txto publicado y la privacidad selecionada -JENI */
+export const postSubmit = (section) => {
+  const content = section.querySelector('#post-input');
+  const privacy = section.querySelector('#privacy-selector');
+  /* Añado la funcion para añadir estos datos a mis post - JENI */
+  addPost(content.value, privacy.value)
+    .then(() => {
+      content.value = '';
+      console.log('Post agregado a fb');
+    }).catch(() => {
+      content.value = '';
+      console.log('Post NO fue agregado a fb');
+    });
 };
