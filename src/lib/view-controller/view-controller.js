@@ -1,5 +1,6 @@
-import { ingresoFacebook, ingresoGoogle} from '../lib/firebase/firebase-auth.js';
-import {loginCall, loginCheckIn, registerAcccount, validateloginForm} from './index.js';
+import { ingresoFacebook, ingresoGoogle} from '../firebase/controller-auth-apis.js';
+import {loginCall, loginCheckIn, registerAcccount, validateloginForm} from './view-controller-auth.js';
+import {addPost} from '../firebase/controller-auth-login.js';
 
 export const btnGoogle = () => {
   ingresoGoogle();
@@ -33,21 +34,36 @@ export const btnRegister = (element) => {
   window.location.hash = '#/session';
 };
 
-export const addMessageDb = (elemt) => {
-  event.preventDefault();
-  let textPost = elemt.querySelector('#content-field').value;
-  let select = elemt.querySelector('#state-privacy');
-  let valuePrivacy = select.value;
-  const firestore = firebase.firestore();
-  const idUser = firebase.auth().currentUser.uid;
-  let userPosts = firestore.collection('users').doc(idUser).set({
-    name: '' });;
-  addPost(textPost, valuePrivacy, userPosts)
+// export const addMessageDb = (elemt) => {
+//   event.preventDefault();
+//   let textPost = elemt.querySelector('#content-field').value;
+//   let select = elemt.querySelector('#state-privacy');
+//   let valuePrivacy = select.value;
+//   const firestore = firebase.firestore();
+//   const idUser = firebase.auth().currentUser.uid;
+//   let userPosts = firestore.collection('users').doc(idUser).set({
+//     name: '' });;
+//   addPost(textPost, valuePrivacy, userPosts)
+//     .then(() => {
+//       data.message = 'Post agregado';
+//       snackbarContainer.MaterialSnackbar.showSnackbar(data);
+//     }).catch(() => {
+//       data.message = 'Lo sentimos, no se pudo agregar el post';
+//       snackbarContainer.MaterialSnackbar.showSnackbar(data);
+//     });
+// };
+
+/* Aqui obtengo el txto publicado y la privacidad selecionada -JENI */
+export const postSubmit = (section) => {
+  const content = section.querySelector('#post-input');
+  const privacy = section.querySelector('#privacy-selector');
+  /* Añado la funcion para añadir estos datos a mis post - JENI */
+  addPost(content.value, privacy.value)
     .then(() => {
-      data.message = 'Post agregado';
-      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      content.value = '';
+      console.log('Post agregado a fb');
     }).catch(() => {
-      data.message = 'Lo sentimos, no se pudo agregar el post';
-      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      content.value = '';
+      console.log('Post NO fue agregado a fb');
     });
 };

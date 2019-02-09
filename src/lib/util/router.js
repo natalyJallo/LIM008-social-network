@@ -1,4 +1,4 @@
-import { viewTemplates } from './templates.js';
+import { viewTemplates } from '../ui/templates.js';
 
 const changeTmp = (hash) => {
   return viewTemp(hash);

@@ -1,4 +1,4 @@
-import {signInUser, loginAuth, closeSignIn, signUpUser} from './firebase/controller-firebase.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser} from '../firebase/controller-auth-login.js';
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
@@ -82,20 +82,20 @@ export const validateloginForm = (email, password) => {
 // export const showPostsList = (post, user, date) => {
  
 // };
-export const itemNote = (objNote) => {
-  const liElement = document.createElement('li');
-  liElement.innerHTML = `
-   <div>
-   <textarea id='content-field'></textarea>
-   <button id='btn-edit'>Editar</button>
-   <button id='btn-delete'>Eliminar</button>
-   </div>
-    `;
-  // agregando evento de click al btn eliminar una nota
-  liElement.querySelector(`#btn-edit-${objNote.id}`)
-    .addEventListener('click', () => (objNote));
+// export const itemNote = (objNote) => {
+//   const liElement = document.createElement('li');
+//   liElement.innerHTML = `
+//    <div>
+//    <textarea id='content-field'></textarea>
+//    <button id='btn-edit'>Editar</button>
+//    <button id='btn-delete'>Eliminar</button>
+//    </div>
+//     `;
+//   // agregando evento de click al btn eliminar una nota
+//   liElement.querySelector(`#btn-edit-${objNote.id}`)
+//     .addEventListener('click', () => (objNote));
 
-  liElement.querySelector(`#btn-deleted-${objNote.id}`)
-    .addEventListener('click', () => deletePost(objNote));
-  return liElement;
-};
+//   liElement.querySelector(`#btn-deleted-${objNote.id}`)
+//     .addEventListener('click', () => deletePost(objNote));
+//   return liElement;
+// };
