@@ -24,7 +24,7 @@ export const getPosts = (callback) =>
     });
     callback(data);
   });
- /* Funcion para obtener los datos de mi usuario  - JENI*/
+/* Funcion para obtener los datos de mi usuario  - JENI*/
 
 
 /* export const getUserData = (callback) =>
