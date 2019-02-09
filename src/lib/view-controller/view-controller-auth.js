@@ -2,10 +2,11 @@ import {signInUser, loginAuth, closeSignIn, signUpUser} from '../firebase/contro
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
-  signInUser(email, password).catch(function(error) {
+  signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
     invalid.innerHTML = 'El email o la contraseña son inválidos.';
+    console.log(invalid);
   });
 };
 // para observar los datos del usuario que inició sesión.
@@ -28,8 +29,6 @@ export const closeSessionCall = () => {
   }).catch((error) => error);
 };
 
-const firestore = firebase.firestore();
-
 /* Funcion de registro de Firebase*/
 export const registerAcccount = (email, password, name, lastName, nickName, country) => {
   signUpUser(email, password)
@@ -51,6 +50,7 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
   let lastNameUser = lastName;
   let nickNameUser = nickName;
   let countryUser = country;
+  let data = {};
   let users = firestore.collection('users');
   users.add(data = {
     email: emailUser,

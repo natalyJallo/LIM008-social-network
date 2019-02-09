@@ -6,7 +6,6 @@ export const closeSignIn = () => firebase.auth().signOut();
 
 export const signUpUser = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
 
-
 export const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
 
 export const addPost = (textNewNote, privacySelected) => firebase.firestore().collection('posts').add({

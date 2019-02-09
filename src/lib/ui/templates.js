@@ -16,6 +16,7 @@ export const viewTemplates = {
                 <label for='input-password'>Password</label>
                 <input type='password' id='input-password' placeholder='contraseña' minlength='6' required></input>
                 </fieldset>
+                <span id='error-text'></span>
                 <button type='button' id='log-in-btn' class='button-send'> Ingresar</button>
                 <button type='button' id='sign-up-btn' class='button-send'> Unirme</button>
                 <p id='error-text'></p>
@@ -72,21 +73,21 @@ export const viewTemplates = {
   
   home: (posts) => {
     const tmpl = `<header class='header-page'>
-                  <div><img class='img-logo align' src='img/logo.png' alt='logo-feminista'>
+                  <div><img class='img-logo  align top top' src='img/logo.png' alt='logo-feminista'>
                   <input class='menu-bar' type='checkbox' id='menu-bar'>
-                  <label class='icon-menu' for='menu-bar'><img src='img/boton-menu.png' alt='icono de menu' class='img-menu align'></label>
+                  <label class='icon-menu' for='menu-bar'><img src='img/boton-menu.png' alt='icono de menu' class='img-menu  align top'></label>
                   <nav class='menu-nav'>
                     <ul class='menu-ul'>
-                      <li class='li-menu'><a class='profile'><img class='img-logo-2 align' src='img/usuario-3.png' alt='icono'><h2 class='text-4 margin'>Perfil</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo align' src='img/historia.png' alt='icono'><h2 class='text-3'>Historias</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo align' src='img/calendario.png' alt='icono'><h2 class='text-3'>Eventos</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo align' src='img/grupo.png' alt='icono'><h2 class='text-3'>Grupos</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo align' src='img/mundo.png' alt='icono'><h2 class='text-3'>Comunidades</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo align' src='img/ley.png' alt='icono'><h2 class='text-3'>Apoyo Legal</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo align' src='img/apoyar-3.png' alt='icono'><h2 class='text-3'>Apoyo Psicologico</h2></a></li>
-                      <li class='li-menu2'><a class='items' id='log-out-btn'><img class='img-logo align' src='img/salir.png' alt='icono'><h2 class='text-3'>Salir</h2></a></li>
+                      <li class='li-menu'><a class='profile'><img class='img-logo-2 align align top' src='img/usuario-3.png' alt='icono'><h2 class='text-4 margin'>Perfil</h2></a></li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 class='text-3'>Historias</h2></a></li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-3'>Eventos</h2></a></li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-3'>Grupos</h2></a></li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-3'>Comunidades</h2></a></li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-3'>Apoyo Legal</h2></a></li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-3'>Apoyo Psicologico</h2></a></li>
+                      <li class='li-menu2'><a class='items' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-3'>Salir</h2></a></li>
                     </ul>
-                  </nav><h1 class='text-logo align'>JoinClude</h1></div>
+                  </nav><h1 class='text-logo  align top'>JoinClude</h1></div>
                   </header>
                   <div class='log-out-form' id='log-out'>
                   <h1 class='text-3'>Bienvenido</h1>
