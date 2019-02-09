@@ -28,6 +28,8 @@ export const closeSessionCall = () => {
   }).catch((error) => error);
 };
 
+const firestore = firebase.firestore();
+
 /* Funcion de registro de Firebase*/
 export const registerAcccount = (email, password, name, lastName, nickName, country) => {
   signUpUser(email, password)
