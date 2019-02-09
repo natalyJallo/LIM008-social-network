@@ -1,11 +1,28 @@
-import {logInFireb, loginCheck} from '../firebase/firebase.js';
+import { viewTemplates } from './templates.js';
 
+const changeTmp = (hash) => {
+  if (hash === '#/' || hash === '' || hash === '#') {
+    return viewTemp('#/signIn');
+  } else if (hash === '#/signIn' || hash === '#/home') {
+    return viewTemp(hash);
+  } else {
+    return viewTemp(hash);
+  } 
+};
+const viewTemp = (routers) => {
+  let router;
+  if (routers) {
+    router = routers.substr(2, routers.length - 2);
+  } else {
+    router = 'signIn';
+  };
+  const container = document.getElementById('container');
+  container.innerHTML = '';
+  container.appendChild(viewTemplates[router]());
+};
 
-export const logInEmail = (cont) => {
-  const errorText = cont.querySelector('error-text');
-  const inputEm = cont.querySelector('input-email');
-  const inputPw = cont.querySelector('input-password');
-  logInFireb(inputEm.value, inputPw.value, errorText);
-  logInCheck();
+export const initRouter = () => {
+  window.addEventListener('load', changeTmp(window.location.hash));
+  if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash);
 };
 
