@@ -1,24 +1,22 @@
-import {signInUser, loginAuth, closeSignin, signUpUser} from './firebase/controller-firebase.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser} from '../firebase/controller-auth-login.js';
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
-  signInUser(email, password).catch(function(error) {
+  signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
     invalid.innerHTML = 'El email o la contraseña son inválidos.';
+    console.log(invalid);
   });
 };
 // para observar los datos del usuario que inició sesión.
 
 export const loginCheckIn = () => {
-  loginAuth((user) => {
-    if (user) {
-      const user = firebase.auth().currentUser;
-      console.log(user);
-      if (user !== null) {
-        const emailUser = user.email;
-        window.location.hash = '#/home';
-      }
+  loginAuth(() => {
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+      const emailUser = user.email;
+      window.location.hash = '#/home';
     } else {
       console.log('No esta registrado todavia');
     }
@@ -27,7 +25,7 @@ export const loginCheckIn = () => {
 
 /* Funcion de cerrar sesion de Firebase*/
 export const closeSessionCall = () => {
-  closeSignin().then(() => {
+  closeSignIn().then(() => {
   }).catch((error) => error);
 };
 
@@ -52,6 +50,7 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
   let lastNameUser = lastName;
   let nickNameUser = nickName;
   let countryUser = country;
+  let data = {};
   let users = firestore.collection('users');
   users.add(data = {
     email: emailUser,
@@ -63,7 +62,7 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
   }).then(function(result) {
     console.log('Document written with ID: ', result.id);
   }).catch((error) => {
-    console.log('no se agrego a lase de datos');
+    console.log('no se agrego a base de datos');
   });
 };
 
@@ -82,3 +81,13 @@ export const validateloginForm = (email, password) => {
   return false;
 };
 
+// Funcion para validar de que no se publique un post vacio
+export const validationPost = (post, error) => {
+  let postValue = post.trim();
+  if (postValue === '') {
+    const message = 'No puedes publicar algo vacio';
+    error.innerHTML = message;
+  } else {
+    return postValue;
+  }
+};
