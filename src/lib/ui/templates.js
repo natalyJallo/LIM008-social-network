@@ -94,6 +94,7 @@ export const viewTemplates = {
                   </div>
                   <div class='box-post large'>
                   <textarea class='box-message' name='post-input' id='post-input' cols='50' rows='10'></textarea>
+                  <span id='post-error'></span>
                   <select id='privacy-selector' class='select-privacy'>
                     <option value='Público'>Publico</option>
                     <option value='Privado'>Privado</option>
@@ -105,19 +106,17 @@ export const viewTemplates = {
     const section = document.createElement('section');
     section.innerHTML = tmpl;
 
-    /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos- jeni */
+    /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos */
     const btnPost = section.querySelector('#btn-posts');
     btnPost.addEventListener('click', () => {
       postSubmit(section);
     });
-    /* CONTAINER de mis posts(ul) - JENI*/
+    /* CONTAINER de mis posts(ul) */
     const postContainer = section.querySelector('#post-container');    
 
     getPosts((posts) => {  
       postContainer.innerHTML = '';
       posts.forEach(post => {
-        /* Aplico un forEach para añadir cada post  a mi ul aplicando la
-         funcion de templates notefunction */
         console.log(post);
         postContainer.appendChild(noteFunction(post));
       });

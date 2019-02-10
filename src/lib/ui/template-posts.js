@@ -1,6 +1,6 @@
-/* Funcion con el maquetado de mis post - JENI*/
 import {deletePost} from '../firebase/controller-auth-login.js';
 
+/* Funcion con el maquetado de mis post*/
 export const noteFunction = (post) => {
   const tmp = `<div class='box-post large2'>
       <div class='box-post-message'>
@@ -17,9 +17,7 @@ export const noteFunction = (post) => {
   postList.innerHTML = tmp;
 
   const btnDeletePost = postList.querySelector(`#btn-deleted-${post.id}`);
-  btnDeletePost.addEventListener('click', () => {
-    deletePost(postList.id);
-  });
+  btnDeletePost.addEventListener('click', () => deletePost(post.id));
 
   return postList;
 };
