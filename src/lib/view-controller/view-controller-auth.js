@@ -87,7 +87,8 @@ export const validationPost = (post, error) => {
   if (postValue === '') {
     const message = 'No puedes publicar algo vacio';
     error.innerHTML = message;
+    return false;
   } else {
-    return postValue;
+    return true;
   }
 };

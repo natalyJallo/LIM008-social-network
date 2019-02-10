@@ -40,14 +40,15 @@ export const postSubmit = (element) => {
   let content = element.querySelector('#post-input');
   let privacy = element.querySelector('#privacy-selector');
   let validation = element.querySelector('#post-error');
-  validationPost(content.value, validation);
-  addPost(content.value, privacy.value)
-    .then(() => {
-      console.log(content);
-      content.value = '';
-      console.log('Post agregado a fb');
-    }).catch(() => {
-      content.value = '';
-      console.log('Post no fue agregado a fb');
-    });
+  if (validationPost(content.value, validation) === true) {
+    addPost(content.value, privacy.value)
+      .then(() => {
+        console.log(content);
+        content.value = '';
+        console.log('Post agregado a fb');
+      }).catch(() => {
+        content.value = '';
+        console.log('Post no fue agregado a fb');
+      });
+  }
 };
