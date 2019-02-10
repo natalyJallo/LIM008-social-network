@@ -15,8 +15,7 @@ export const addPost = (textNewNote, privacySelected) => firebase.firestore().co
   likes: 0,
 });
 
-/* Funcion para obtener mis post de mi coleccion  - JENI*/
-      
+/* Funcion para obtener mis post de mi coleccion */   
 export const getPosts = (callback) =>
   firebase.firestore().collection('posts').onSnapshot((querySnapshot) => {
     const data = [];
