@@ -19,7 +19,6 @@ export const addPost = (textNewNote, privacySelected) => firebase.firestore().co
 
 export const getPosts = (callback) =>
   firebase.firestore().collection('posts').onSnapshot((querySnapshot) => {
-    console.log(querySnapshot);
     const data = [];
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data() });
@@ -28,13 +27,13 @@ export const getPosts = (callback) =>
   });
 
 /* Funcion para obtener los datos de mi usuario  - JENI*/
-export const getUserData = (callback) =>
+/* export const getUserData = (callback) =>
   firebase.firestore().collection('users').doc('PXChJPo8OofUtbzScUlMRtT9jc42').onSnapshot((querySnapshot) => {
     const dataUser = [];
     dataUser.push({...querySnapshot.data()});
     console.log(dataUser);
     callback(dataUser);
-  });  
+  });  */ 
 
 export const updateProfile = (name, lastName) => {
   let user = firebase.auth().currentUser;

@@ -71,7 +71,7 @@ export const addData = (email, password, name, lastName, nickName, country, erro
     console.error('Error writing document: ', error);    
     console.log('Registro en base de datos no exitoso');
   }).then(result => {
-    console.log('hola' + result);
+    console.log('Registro en base de datos exitoso');
   });
 };
 

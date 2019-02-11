@@ -1,6 +1,6 @@
 import {closeSessionCall } from './index.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from './view-controller.js';
-import {getPosts, getUserData} from './firebase/controller-firebase.js';
+import {getPosts, /* getUserData */} from './firebase/controller-firebase.js';
 
 export const viewTemplates = {
   signIn: () => { 
@@ -102,13 +102,13 @@ export const viewTemplates = {
         postContainer.appendChild(noteFunction(post));
       });
     });
-    /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI*/
+    /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI
     getUserData((datas) => {
       datas.forEach(data => {
         console.log(data.name);      
       });
     });
-    
+    */
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
