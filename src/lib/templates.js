@@ -123,11 +123,7 @@ export const viewTemplates = {
 
 const noteFunction = (post) => {
   const tmp = `
-<<<<<<< HEAD
   <p> ${post.name} dice </p>
-=======
-  <p> ${post.uid} dice </p>
->>>>>>> 0917ffa250c3c6c896744bdb1b416e6e98a2ef88
     <span> ${post.content} </span>
     <span> ${post.privacy} </span>
     <button class="" id="btn-edit-${post.id}">
