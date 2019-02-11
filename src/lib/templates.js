@@ -98,16 +98,16 @@ export const viewTemplates = {
       posts.forEach(post => {
         /* Aplico un forEach para añadir cada post  a mi ul aplicando la
          funcion de templates notefunction */
+        console.log(post);
         postContainer.appendChild(noteFunction(post));
       });
     });
-    /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI
-    getUserData((datas) => {
+    /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI*/
+    /*     getUserData((datas) => {
       datas.forEach(data => {
-        console.log(data.name);      
+        noteFunction(data);
       });
-    });
-    */
+    }); */
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
@@ -123,7 +123,11 @@ export const viewTemplates = {
 
 const noteFunction = (post) => {
   const tmp = `
+<<<<<<< HEAD
   <p> ${post.name} dice </p>
+=======
+  <p> ${post.uid} dice </p>
+>>>>>>> 0917ffa250c3c6c896744bdb1b416e6e98a2ef88
     <span> ${post.content} </span>
     <span> ${post.privacy} </span>
     <button class="" id="btn-edit-${post.id}">
