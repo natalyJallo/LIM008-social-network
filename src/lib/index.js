@@ -1,4 +1,4 @@
-import {signInUser, loginAuth, closeSignin, signUpUser} from './firebase/controller-firebase.js';
+import {signInUser, loginAuth, closeSignin, signUpUser, updateProfile} from './firebase/controller-firebase.js';
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
@@ -19,6 +19,7 @@ export const loginCheckIn = () => {
         const emailUser = user.email;
         const uid = user.uid;
         window.location.hash = '#/home';
+        console.log('esta registrado');   
       }
     } else {
       console.log('No esta registrado todavia');
@@ -41,8 +42,8 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
         url: 'http://127.0.0.1:5500/src/'
       };
       console.log('registerAccount antes de addData');
-      addData(email, password, name, lastName, nickName, country, errorText);   
-      console.log('registerAccount luego de addData');   
+      addData(email, password, name, lastName, nickName, country, errorText);
+      updateProfile(name, lastName);
       firebase.auth().signOut();
       result.user.sendEmailVerification(configuration);
     }).catch((error) => {
@@ -65,13 +66,13 @@ export const addData = (email, password, name, lastName, nickName, country, erro
     lastName: lastName,
     nickName: nickName,
     country: country
-  });/* .catkkch(error => {
+  }).catch(error => {
     errorText.innerHTML = 'Hubo un error en su registro';
     console.error('Error writing document: ', error);    
     console.log('Registro en base de datos no exitoso');
   }).then(result => {
     console.log('hola' + result);
-  }); */
+  });
 };
 
 // Funcion de validar si el correo y contraseña se han ingresado bien al iniciar sesion
@@ -88,4 +89,3 @@ export const validateloginForm = (email, password) => {
   }
   return false;
 };
-

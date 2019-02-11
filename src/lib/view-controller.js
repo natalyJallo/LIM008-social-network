@@ -1,3 +1,4 @@
+
 import { ingresoFacebook, ingresoGoogle} from '../lib/firebase/firebase-auth.js';
 import {loginCall, loginCheckIn, registerAcccount, validateloginForm, addData} from './index.js';
 import {addPost} from './firebase/controller-firebase.js';

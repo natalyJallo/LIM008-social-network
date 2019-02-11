@@ -99,16 +99,16 @@ export const viewTemplates = {
       posts.forEach(post => {
         /* Aplico un forEach para añadir cada post  a mi ul aplicando la
          funcion de templates notefunction */
-        console.log(post);
         postContainer.appendChild(noteFunction(post));
       });
     });
     /* Funcion para obtener el nombre del usuario y colocarlo en mis posts - JENI*/
     getUserData((datas) => {
       datas.forEach(data => {
-        console.log(data);
+        console.log(data.name);      
       });
     });
+    
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
@@ -125,7 +125,7 @@ export const viewTemplates = {
 
 const noteFunction = (post) => {
   const tmp = `
-  <p> ${post.displayName} dice </p>
+  <p> ${post.name} dice </p>
     <span> ${post.content} </span>
     <span> ${post.privacy} </span>
     <button class="" id="btn-edit-${post.id}">
