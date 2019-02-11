@@ -1,9 +1,14 @@
 import { viewTemplates } from './templates.js';
 
 const changeTmp = (hash) => {
-  return viewTemp(hash);
+  if (hash === '#/' || hash === '' || hash === '#') {
+    return viewTemp('#/signIn');
+  } else if (hash === '#/signIn' || hash === '#/home') {
+    return viewTemp(hash);
+  } else {
+    return viewTemp(hash);
+  } 
 };
-
 const viewTemp = (routers) => {
   let router;
   if (routers) {
