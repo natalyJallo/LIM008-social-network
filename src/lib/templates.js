@@ -59,7 +59,6 @@ export const viewTemplates = {
     const element2 = document.createElement('form');
     element2.setAttribute('class', 'form-signUp');
     element2.innerHTML = tmpl;
-
     const btnSendData = element2.querySelector('#send-data-btn');
     btnSendData.addEventListener('click', () => {
       btnRegister(element2);
@@ -114,7 +113,6 @@ export const viewTemplates = {
       closeSessionCall();
       window.location.hash = '#/signIn';
     });
-
     return section;
   },
   

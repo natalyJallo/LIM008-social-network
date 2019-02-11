@@ -44,6 +44,6 @@ export const updateProfile = (name, lastName) => {
   }).catch(error => {
     console.log(error);
   });
-}
+};
 
   

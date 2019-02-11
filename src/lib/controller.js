@@ -18,6 +18,7 @@ const viewTemp = (routers) => {
   };
   const container = document.getElementById('container');
   container.innerHTML = '';
+  console.log(router);
   container.appendChild(viewTemplates[router]());
 };
 
@@ -25,4 +26,3 @@ export const initRouter = () => {
   window.addEventListener('load', changeTmp(window.location.hash));
   if (('onhashchange' in window)) window.onhashchange = () => changeTmp(window.location.hash);
 };
-
