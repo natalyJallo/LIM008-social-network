@@ -1,5 +1,5 @@
-import {configFirebase} from './lib/firebase/firebase-auth.js';
-import {initRouter} from './lib/controller.js';
+import {configFirebase} from './lib/firebase/config-firebase.js';
+import {initRouter} from './lib/util/router.js';
 
 const init = () => {
   configFirebase();

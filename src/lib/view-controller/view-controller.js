@@ -1,7 +1,6 @@
-
-import { ingresoFacebook, ingresoGoogle} from '../lib/firebase/firebase-auth.js';
-import {loginCall, loginCheckIn, registerAcccount, validateloginForm} from './index.js';
-import {addPost} from './firebase/controller-firebase.js';
+import { ingresoFacebook, ingresoGoogle} from '../firebase/controller-auth-apis.js';
+import {loginCall, loginCheckIn, registerAcccount, validateloginForm, validationPost} from './view-controller-auth.js';
+import {addPost} from '../firebase/controller-auth-login.js';
 
 export const btnGoogle = () => {
   ingresoGoogle();
@@ -14,9 +13,10 @@ export const btnFacebook = () => {
 
 /* Inicio de sesión por email y contraseña y registro*/
 export const btnSignIn = (elemt) => {
-  const emailLogIn = elemt.querySelector('#input-email').value; // Input email de inicio de sesión
+  const emailLogIn = elemt.querySelector('#input-email').value;
+  console.log(emailLogIn); // Input email de inicio de sesión
   const passwordLogIn = elemt.querySelector('#input-password').value; // Input contraseña de inicio de sesión
-  const errorText = elemt.querySelector('#error-text');
+  const errorText = elemt.querySelector('#error-text').value;
   if (validateloginForm(emailLogIn, passwordLogIn) === true) {
     loginCall(emailLogIn, passwordLogIn, errorText);
     loginCheckIn();
@@ -31,27 +31,23 @@ export const btnRegister = (element) => {
   let emailSignUp = element.querySelector('#enter-email').value; // Input volver a ingresar email en registro
   let passwordSignUp = element.querySelector('#enter-psw').value; // Input contraseña en registro
   let passwordVerif = element.querySelector('#re-enter-psw').value;
-  let errorTextSignUp = element.querySelector('#error-text-sign-up'); 
-  if (registerAcccount(emailSignUp, passwordVerif, nameSignUp, lastNameSignUp, nickNameSignUp, countrySignUp, errorTextSignUp)) {
-    console.log('Registro y añadido a base de datos exitoso');
-  } else {
-    console.log('Ocurrió un problema');
-  }
+  if (registerAcccount(emailSignUp, passwordVerif, nameSignUp, lastNameSignUp, nickNameSignUp, countrySignUp)) {}
   window.location.hash = '#/session';
 };
 
-
 /* Aqui obtengo el txto publicado y la privacidad selecionada -JENI */
-export const postSubmit = (section) => {
-  const content = section.querySelector('#post-input');
-  const privacy = section.querySelector('#privacy-selector');
-  /* Añado la funcion para añadir estos datos a mis post - JENI */
+export const postSubmit = (element) => {
+  let content = element.querySelector('#post-input');
+  let privacy = element.querySelector('#privacy-selector');
+  let validation = element.querySelector('#post-error');
+  validationPost(content.value, validation);
   addPost(content.value, privacy.value)
     .then(() => {
+      console.log(content);
       content.value = '';
       console.log('Post agregado a fb');
     }).catch(() => {
       content.value = '';
-      console.log('Post NO fue agregado a fb');
+      console.log('Post no fue agregado a fb');
     });
 };

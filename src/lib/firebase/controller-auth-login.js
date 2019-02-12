@@ -2,21 +2,20 @@ export const signInUser = (email, password) => firebase.auth().signInWithEmailAn
 
 export const loginAuth = (user) => firebase.auth().onAuthStateChanged(user);
 
-export const closeSignin = () => firebase.auth().signOut();
+export const closeSignIn = () => firebase.auth().signOut();
 
 export const signUpUser = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
 
-/* Esta es mi funcion de agregar post a mi coleccion posts - JENI */
+export const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
+
 export const addPost = (textNewNote, privacySelected) => firebase.firestore().collection('posts').add({
   content: textNewNote, 
   privacy: privacySelected,
-  name: firebase.auth().currentUser.displayName,
   uid: firebase.auth().currentUser.uid,
   likes: 0,
 });
 
-/* Funcion para obtener mis post de mi coleccion  - JENI*/
-
+/* Funcion para obtener mis post de mi coleccion */   
 export const getPosts = (callback) =>
   firebase.firestore().collection('posts').onSnapshot((querySnapshot) => {
     const data = [];
@@ -26,29 +25,19 @@ export const getPosts = (callback) =>
     callback(data);
   });
 
-export const updateProfile = (name, lastName) => {
-  let user = firebase.auth().currentUser;
-  user.updateProfile({
-    displayName: name + ' ' + lastName,
-  }).then(() => {
-    console.log('Se Actualizo de manera exitosa');
-  }).catch(error => {
-    console.log(error);
-  });
-};
-
 // funcion para editar post
 export const editPosts = (idPost, textNewNote) => firebase.firestore().collection('posts').doc(idPost).update({
   content: textNewNote, 
 }); 
 
-/* Funcion para obtener los datos de mi usuario  - JENI*/
-
-/* export const getUserData = (callback) =>
-  firebase.firestore().collection('users').onSnapshot((querySnapshot) => {
-    const dataUser = [];
-    querySnapshot.forEach((doc) => {
-      dataUser.push({ id: doc.id, ...doc.data() });
-    });
-    callback(dataUser);
-  });   */
+/* funcion para editar post
+export const editPosts = (idPost, textNewNote, privacySelected) => firebase.firestore().collection('posts').doc(idPost).get()
+.then(function(querySnapshot) {
+  querySnapshot.forEach(function(doc) {
+    console.log(doc.id, '=>', doc.data());
+    // Build doc ref from doc.id
+    firebase.firestore().collection('posts').doc(doc.id).update({
+      content: textNewNote, 
+      privacy: privacySelected });
+  });
+});*/

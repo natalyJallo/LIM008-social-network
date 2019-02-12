@@ -1,8 +1,8 @@
-import {signInUser, loginAuth, closeSignin, signUpUser, updateProfile} from './firebase/controller-firebase.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser, updateProfile} from './firebase/controller-firebase.js';
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
-  signInUser(email, password).catch(function(error) {
+  signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
     invalid.innerHTML = errorCode;
@@ -29,7 +29,7 @@ export const loginCheckIn = () => {
 
 /* Funcion de cerrar sesion de Firebase*/
 export const closeSessionCall = () => {
-  closeSignin().then(() => {
+  closeSignIn().then(() => {
   }).catch((error) => error);
 };
 
@@ -75,7 +75,7 @@ export const addData = (email, password, name, lastName, nickName, country, erro
   });
 };
 
-// Funcion de validar si el correo y contraseña se han ingresado bien al iniciar sesion
+// Funcion para validar correo y contraseña.
 export const validateloginForm = (email, password) => {
   const regEx = /\S+@\S+\.\S+/;
   if (password !== '' & email !== '') {
@@ -88,4 +88,15 @@ export const validateloginForm = (email, password) => {
     return true;
   }
   return false;
+};
+
+// Funcion para validar de que no se publique un post vacio
+export const validationPost = (post, error) => {
+  let postValue = post.trim();
+  if (postValue === '') {
+    const message = 'No puedes publicar algo vacio';
+    error.innerHTML = message;
+  } else {
+    return postValue;
+  }
 };
