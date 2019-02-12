@@ -1,82 +1,199 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-/* header {
-  width: 100%;
-  height: 100px;
- background-color: #9B5AA9	
-} */
+/* Propiedades generales */
 .container {
 top: 0px;
 bottom: 0px;
 }
+body {   
+  font-family: 'Open Sans', sans-serif; 
+} 
+h2{
+  color: #000;
+  text-align: left;
+  letter-spacing: 0.1em;
+  font-size: 19px;
+  font-weight: lighter;
+} 
 
-.header-page{
-    background-color: #9D66A9;
-    width: 100%;
-    height: 50px;
+/* Estilos para la seccion de inicio de sesion */
+.login-form {
+  border: 1px black;
+  width: 100%;
+  margin: auto;
+  min-width: 250px;
+  max-width: 380px;
+  background-color: #E9ACF6;
+  border-radius: 12px;
+  height: 100%;
+  position: absolute;
 }
-.top {
-  margin-top: 10px;
+.login-form > fieldset {
+  display: grid;
+  grid-template-columns: 100px auto;
+  border: none;
 }
-.img-logo {
-  width: 30px;
-  height: 35px;
-  margin-left: 20px;
-  margin-right: 10px;
-
-}
-.img-logo-2 {
-  width: 60px;
-  height: 60px;
-  margin-left: 10px;
-}
-.img-like {
-  width: 20px;
-  height: 20px;
-  margin-left: 5px;
+.img-login {
+  margin-left: 100px;
+  margin-top: 70px;
+  width: 16%
 }
 .text-logo {
   color: #fff;
   width: 100px;
   float: right;
 }
-.text-3 {
-  width: 140px;
-  margin: auto;
-}
-.margin {
-  margin-top: 30px;
-}
-.text-4 {
-  width: 140px;
-  float: right;
-  margin-right: 70px;
+.style-logo {
+  margin-right: 100px;
+  margin-top: 110px;
   font-size: 20px;
+}
+.top {
+  margin-top: 10px;
+}
+.login-user {
+  margin-left: 29px;
+}
+.img-user {
+  width: 20px;
+  height: 20px;
+}
+.input-email {
+  padding: 5px 5px 5px 17px;
+  width: 220px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+  margin-right: 15px;
+  border: 1px solid #E9ACF6;
+}
+.message-error {
+  width: 170px;
+  height: 30px;
+  font-size: 10px;
+  text-align: center;
+  margin: auto;
+  color: purple;
+  font-family: 'Montserrat', sans-serif;
+}
+.btn-center {
+  width: 100%;
+  margin-bottom: 10px;
+  float: none;
+  text-align: center;
+}
+.btn-color {
+  background-color:#9D66A9;
+  border: #9D66A9;
+}
+.singIn {
+  width: 120px;
+  height: 28px;
+  border-radius: 10px;
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.text-register {
+  text-align: center;
+  font-weight: lighter;
+  margin-bottom: 15px;
+}
+.btn-social-net{
+  cursor: pointer;
+  height: 65px;
+  width: 65px;
+  padding-bottom: 2px; 
+  border: none;
+  margin-left: 75px;
+  margin-bottom: 10px;
+}
+#btn-facebook {
+  background: url("img/facebook2.png") no-repeat scroll;
+}
+#btn-google {
+  background: url("img/google.png") no-repeat; 
+}
+.style-rgtr {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Estilos para la seccion de registrar */
+.form-signUp {
+  background-image: url(img/58930.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.style-login{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: lighter;
+}
+.style-register {
+  margin-top: 70px;
+}
+.label-form {
+  width: 25px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+.img-icon {
+  width: 25px;
+  height: 25px;
+}
+.enter-data {
+  border-radius: 8px;
+  width: 220px;
+  height: 35px;
+  padding-left: 10px;
+  color: #9C9797;
+  border: 1px;
+  margin-bottom: 13px;
+}
+.error-text-sign-up {
+  width: 200px;
+  margin: auto;
+  height: 30px;
+}
+
+/* ESTILOS PARA LA PAGINA PRINCIPAL DE LA RED SOCIAL */
+/* estilos para el encabezado de la pagina */
+.header-page{
+  background-color: #9D66A9;
+  width: 100%;
+  height: 50px;
+}
+.img-logo {
+  width: 30px;
+  height: 35px;
+  margin-left: 20px;
+  margin-right: 10px;
 }
 .align {
   margin-right: 10px;
 }
-.align-2 {
-  margin: 10px 10px;
-}
-.img-menu {
-  width: 30px;
-  height: 30px;
+.text-logo-header {
+  font-size: 19px;
+  margin-top: 17px;
 }
 
+/* Estilos para el barra de navegacion de la pagina */
 .menu-bar {
   display: none;
 }
 .menu-bar:checked ~ .menu-nav {
   transform:  translateX(0%);
 }
-
 .menu-nav {
   position: absolute;
   top: 50px;
@@ -92,6 +209,10 @@ bottom: 0px;
   float: right;
   margin-left: 150px;
  }
+.img-menu {
+  width: 30px;
+  height: 30px;
+}
 .menu-ul{
   margin: 0;
   list-style: none;
@@ -106,147 +227,72 @@ bottom: 0px;
 .profile {
   /* margin-left: 30px; */
 }
-.h1{
-  text-align: center; 
-  letter-spacing: 0.3em;
-  width: 100%;
-  font-size: 50px;
+.items {
+  width: 250px;
+  height: 60px;
 }
-
-h2{
-  color: #000;
-  text-align: left;
-  letter-spacing: 0.1em;
-  font-size: 19px;
-  font-weight: lighter;
+.img-logo-2 {
+  width: 60px;
+  height: 60px;
+  margin-left: 10px;
 }
-
-body {   
-    font-family: 'Open Sans', sans-serif; 
-  }  
-
-.form-signUp {
-  background-image: url(img/58930.jpg);
-  background-size: cover;
-  padding-top: 40px;
-  height: 560px;
+.margin {
+  margin-top: 30px;
 }
-.login-form {
-  border: 1px black;
-  width: 100%;
+.text-4 {
+  width: 140px;
+  float: right;
+  margin-right: 70px;
+  font-size: 20px;
+}
+.text-3 {
+  width: 140px;
   margin: auto;
-  min-width: 250px;
-  max-width: 380px;
-  background-color: #E9ACF6;
-  border-radius: 12px;
-  height: 500px;
-  padding-top: 30px;
 }
 
-/* .login-form label {
-  margin-right: 60px;
-} */
-.input-email {
-  background: url(img/usuario-forma1.png) no-repeat scroll 0 0 transparent;
-  border: 1px solid #BFBFBF;
-  color: #BFBFBF;
-  padding: 5px 5px 5px 25px;
-  width: 230px;
-  margin-bottom: 20px;
-  background-position: 4px -18px;
-}
-.enter-data {
-  border-radius: 8px;
-  width: 220px;
-  height: 35px;
-  display: block;
-  margin: 20px 80px;
-  padding-left: 10px;
-  color: #9C9797;
-}
-.name {
-  margin-top: 100px;
-}
-.img-user {
-  width: 20px;
-  height: 20px;
-}
-
-.login-form > fieldset {
-  display: grid;
-  grid-template-columns: 100px auto;
-  border: none;
-}
-
-
-/* .login-form input {
-  display: block;
-  width: 90%;
-  padding: 10px;
-  margin: 20px 0;
-} */
-
-
-footer{
-  position: fixed;
-  display: block;
-    left: 0;
-    bottom: 0;
-    width: 100%;  
-   background-color: #E9ACF6
-}
-footer p{
-  text-align: center;
-  color:#000;
-}
-.btn-social-net{
-  cursor: pointer;
-  font-weight: bold;
-  height: 65px;
-  width: 65px;
-  padding-bottom: 2px; 
-  padding-right: 15px;
-  border: none;
-}
-
-#btn-facebook {
-  background: url("img/facebook2.png") no-repeat scroll;
-  margin-left: 18%;
-}
-
-#btn-google {
-  background: url("img/google.png") no-repeat; 
-  margin-left: 18%;
-}
-.button-close{
-  font-size: 14px;
-  margin-bottom: 30px;
-  width: 130px;
-  height: 35px;
-  letter-spacing: 1.5px;
-  border: #9D66A9;
-}
-
-.button-send:hover{  
-  background-color: #E9ACF6;
-  opacity: 1;
-}
-
-.button-send:active{
- transform: scale(0.95)
-}
-
+/* Estilos para publicar los posts */
 .box-post{
   width: 300px;
-  height: 130px;
   background-color:  rgb(244, 204, 248);;
   padding: 20px 15px;
   border-radius: 5px;
 }
+.text-welcome {
+  font-size: 20px;
+  text-align: center;
+}
 .large {
-  height: 130px;
+  height: 140px;
   margin-left: 30px;
 }
+.box-message{
+  width: 270px;
+  height: 70px;
+  padding: 5px 10px;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 5px;
+  border: 1px;
+}
+.msg-post{
+ height: 10px;
+}
+.select-privacy {
+  border-radius: 5px;
+  width: 80px;
+  height: 22px;
+  border: white;
+  margin-left: 93px;
+}
+.btn-post {
+  width: 80px;
+  height: 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* Estilos para los posts */
 .large2 {
   height: 195px;
   margin-bottom: 10px;
@@ -257,48 +303,8 @@ footer p{
   background-color: white;
   margin-bottom: 10px;
 }
-.box-message{
-  width: 270px;
-  height: 70px;
-}
-
-.btn-post {
-  width: 80px;
-  height: 20px;
-  margin-left: 10px;
-  background-color:#9D66A9;
-  border: #9D66A9;
-  border-radius: 5px;
-  color: white;
-  letter-spacing: 1px;
-}
-.btn-edit-delete {
-  float: right;
-  width: 60px;
-  font-size: 11px;
-}
-.count-like {
-  width: 130px;
-  float: left;
-}
-.select-privacy {
-  border-radius: 5px;
-  width: 80px;
-  height: 22px;
-  border: white;
-  margin-left: 93px;
-}
-.list-posts {
-  margin-left: 30px;
-  margin-top: 10px;
-}
-.items {
-  width: 250px;
-  height: 60px;
-}
-.boxes-posts {
-  width: 200px;
-  height: 40px;
+.align-2 {
+  margin: 10px 10px;
 }
 .text-5 {
   font-size: 10px;
@@ -306,13 +312,6 @@ footer p{
   float: right;
   margin-right: 100px;
   margin-top: 15px;
-}
-.like-word {
-  font-size: 12px;
-  width: 80px;
-  float: right;
-  margin-right: 15px;
-  margin-top: 4px;
 }
 .icon-privacy {
   font-size: 8px;
@@ -323,13 +322,52 @@ footer p{
   margin-left: 10px;
   border: white;
 }
+.count-like {
+  width: 130px;
+  float: left;
+}
+.img-like {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+.like-word {
+  font-size: 12px;
+  width: 80px;
+  float: right;
+  margin-right: 15px;
+  margin-top: 4px;
+}
+.btn-edit-delete {
+  float: right;
+  width: 60px;
+  font-size: 11px;
+}
+.btn-edit-update {
+  display: none;
+}
+
+/* Estilo para le muro de los posts */
+.list-posts {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+/* Estilo para el pie de pagina */
+.footer{
+  position: fixed;
+  display: block;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  background-color: #E9ACF6;
+  text-align: center;
+  color: #000;
+}
 
 @media (max-width:480px){
   .login-form{
-    width: 90%
-  }
-  .login-form img{
-    width: 20%
+    width: 100%
   }
 }
 @media (max-width:768px){

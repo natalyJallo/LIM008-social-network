@@ -1,6 +1,6 @@
 import { ingresoFacebook, ingresoGoogle} from '../firebase/controller-auth-apis.js';
 import {loginCall, loginCheckIn, registerAcccount, validateloginForm, validationPost} from './view-controller-auth.js';
-import {addPost} from '../firebase/controller-auth-login.js';
+import {addPost, isUserSignedIn, getUserName, getProfilePicUrl, updateContent, updateLikePost } from '../firebase/controller-auth-login.js';
 
 export const btnGoogle = () => {
   ingresoGoogle();
@@ -16,8 +16,8 @@ export const btnSignIn = (elemt) => {
   const emailLogIn = elemt.querySelector('#input-email').value;
   console.log(emailLogIn); // Input email de inicio de sesión
   const passwordLogIn = elemt.querySelector('#input-password').value; // Input contraseña de inicio de sesión
-  const errorText = elemt.querySelector('#error-text').value;
-  if (validateloginForm(emailLogIn, passwordLogIn) === true) {
+  const errorText = elemt.querySelector('#error-text');
+  if (validateloginForm(emailLogIn, passwordLogIn, errorText) === true) {
     loginCall(emailLogIn, passwordLogIn, errorText);
     loginCheckIn();
   };
@@ -40,15 +40,33 @@ export const postSubmit = (element) => {
   let content = element.querySelector('#post-input');
   let privacy = element.querySelector('#privacy-selector');
   let validation = element.querySelector('#post-error');
+  let countLike = 0;
   if (validationPost(content.value, validation) === true) {
-    addPost(content.value, privacy.value)
+    const uidUser = isUserSignedIn();
+    const data = {
+      message: '',
+      timeout: 2000,
+      actionText: 'Undo'
+    };
+    const name = getUserName();
+    const image = getProfilePicUrl();
+    addPost(content.value, privacy.value, image, name, uidUser, countLike)
       .then(() => {
-        console.log(content);
         content.value = '';
-        console.log('Post agregado a fb');
+        data.message = 'Post agregado';
+        console.log('Post agregado');
       }).catch(() => {
         content.value = '';
-        console.log('Post no fue agregado a fb');
+        data.message = 'Post no agregado';
+        console.log('Post no agregado');
       });
   }
+};
+
+export const updatePostOnClick = (post, messageUpdate) => {
+  return updateContent(post.id, messageUpdate);
+};
+
+export const updateLikeCount = (post, like) => {
+  return updateLikePost(post.id, like);
 };

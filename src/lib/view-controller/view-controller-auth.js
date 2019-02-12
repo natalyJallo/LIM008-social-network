@@ -1,16 +1,16 @@
 import {signInUser, loginAuth, closeSignIn, signUpUser} from '../firebase/controller-auth-login.js';
 
 /* Funcion de inicio de sesion Firebase*/
-export const loginCall = (email, password, invalid) => {
+export const loginCall = (email, password) => {
   signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
-    invalid.innerHTML = 'El email o la contraseña son inválidos.';
-    console.log(invalid);
+    // invalid.innerHTML = 'El email o la contraseña son inválidos.';
+    // console.log(invalid);
   });
 };
-// para observar los datos del usuario que inició sesión.
 
+// para observar los datos del usuario que inició sesión.
 export const loginCheckIn = () => {
   loginAuth(() => {
     const user = firebase.auth().currentUser;
@@ -67,18 +67,24 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
 };
 
 // Funcion de validar si el correo y contraseña se han ingresado bien al iniciar sesion
-export const validateloginForm = (email, password) => {
+export const validateloginForm = (email, password, error) => {
   const regEx = /\S+@\S+\.\S+/;
   if (password !== '' & email !== '') {
-    return true;
+    if (regEx.test(email)) {
+      if (password.length >= 6) {
+        return true;
+      } else {
+        error.innerHTML = 'Contraseña mayor a 6 caracteres';
+        return false;
+      }
+    } else {
+      error.innerHTML = 'Ingrese su email correcto';
+      return false;
+    };
   } else {
-    alert('Por favor Ingrese sus datos de registro correcto');
-  } if (regEx.test(email)) {
-    return true;
-  } if (password.length >= 6) {
-    return true;
-  }
-  return false;
+    error.innerHTML = 'Ingrese un email y un password';
+    return false;
+  };
 };
 
 // Funcion para validar de que no se publique un post vacio
@@ -92,3 +98,17 @@ export const validationPost = (post, error) => {
     return true;
   }
 };
+
+export const postDate = (date) => {
+  let month = '' + (date.getMonth() + 1);
+  let day = '' + date.getDate();
+  let year = date.getFullYear();
+    
+    
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+    
+  return [day, month, year].join('/');
+};
+
+
