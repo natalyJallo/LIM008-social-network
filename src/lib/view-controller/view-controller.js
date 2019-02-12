@@ -1,7 +1,7 @@
 
-import { ingresoFacebook, ingresoGoogle} from '../lib/firebase/firebase-auth.js';
-import {loginCall, loginCheckIn, registerAcccount, validateloginForm, /* addData */} from './index.js';
-import {addPost} from './firebase/controller-firebase.js';
+import { ingresoFacebook, ingresoGoogle} from '../firebase/controller-auth-apis.js';
+import {loginCall, loginCheckIn, registerAcccount, validateloginForm, validationPost/* ,addData */} from './view-controller-auth.js';
+import {addPost} from '../firebase/controller-auth-login.js';
 
 export const btnGoogle = () => {
   ingresoGoogle();
@@ -13,6 +13,7 @@ export const btnFacebook = () => {
 };
 
 /* Inicio de sesión por email y contraseña y registro*/
+
 export const btnSignIn = (elemt) => {
   const emailLogIn = elemt.querySelector('#input-email').value; // Input email de inicio de sesión
   const passwordLogIn = elemt.querySelector('#input-password').value; // Input contraseña de inicio de sesión
@@ -38,21 +39,21 @@ export const btnRegister = (element) => {
     console.log('Ocurrió un problema');
   }
   window.location.hash = '#/session';
-  loginCheckIn(nameSignUp);
 };
 
-
-/* Aqui obtengo el txto publicado y la privacidad selecionada -JENI */
-export const postSubmit = (section) => {
-  const content = section.querySelector('#post-input');
-  const privacy = section.querySelector('#privacy-selector');
-  /* Añado la funcion para añadir estos datos a mis post - JENI */
-  addPost(content.value, privacy.value)
-    .then(() => {
-      content.value = '';
-      console.log('Post agregado a fb');
-    }).catch(() => {
-      content.value = '';
-      console.log('Post NO fue agregado a fb');
-    });
+export const postSubmit = (element) => {
+  let content = element.querySelector('#post-input');
+  let privacy = element.querySelector('#privacy-selector');
+  let validation = element.querySelector('#post-error');
+  if (validationPost(content.value, validation) === true) {
+    addPost(content.value, privacy.value)
+      .then(() => {
+        console.log(content);
+        content.value = '';
+        console.log('Post agregado a fb');
+      }).catch(() => {
+        content.value = '';
+        console.log('Post no fue agregado a fb');
+      });
+  }
 };

@@ -1,8 +1,8 @@
-import {signInUser, loginAuth, closeSignin, signUpUser, updateProfile} from './firebase/controller-firebase.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser, addData, updateProfile} from '../firebase/controller-auth-login.js';
 
 /* Funcion de inicio de sesion Firebase*/
 export const loginCall = (email, password, invalid) => {
-  signInUser(email, password).catch(function(error) {
+  signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
     invalid.innerHTML = errorCode;
@@ -16,8 +16,6 @@ export const loginCheckIn = () => {
     if (user) {
       const user = firebase.auth().currentUser;
       if (user !== null) {
-        const emailUser = user.email;
-        const uid = user.uid;
         window.location.hash = '#/home';
         console.log('esta registrado');   
       }
@@ -29,10 +27,9 @@ export const loginCheckIn = () => {
 
 /* Funcion de cerrar sesion de Firebase*/
 export const closeSessionCall = () => {
-  closeSignin().then(() => {
+  closeSignIn().then(() => {
   }).catch((error) => error);
 };
-
 /* Funcion de registro de Firebase*/
 export const registerAcccount = (email, password, name, lastName, nickName, country, errorText) => {
   signUpUser(email, password)
@@ -53,39 +50,29 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
     });
 };
 
-
-export const addData = (email, password, name, lastName, nickName, country, errorText) => {
-  console.log('Entro a addData');
-  let uidNumber = firebase.auth().currentUser.uid;
-  console.log(uidNumber);
-  return firebase.firestore().collection('users').doc(uidNumber).set({
-    uid: uidNumber,
-    email: email,
-    password: password,
-    name: name,
-    lastName: lastName,
-    nickName: nickName,
-    country: country
-  }).catch(error => {
-    errorText.innerHTML = 'Hubo un error en su registro';
-    console.error('Error writing document: ', error);    
-    console.log('Registro en base de datos no exitoso');
-  }).then(result => {
-    console.log('Registro en base de datos exitoso');
-  });
-};
-
 // Funcion de validar si el correo y contraseña se han ingresado bien al iniciar sesion
 export const validateloginForm = (email, password) => {
   const regEx = /\S+@\S+\.\S+/;
   if (password !== '' & email !== '') {
     return true;
   } else {
-    alert('Por favor ingrese correctamente sus datos');
+    alert('Por favor Ingrese sus datos de registro correcto');
   } if (regEx.test(email)) {
     return true;
   } if (password.length >= 6) {
     return true;
   }
   return false;
+};
+
+// Funcion para validar de que no se publique un post vacio
+export const validationPost = (post, error) => {
+  let postValue = post.trim();
+  if (postValue === '') {
+    const message = 'No puedes publicar algo vacio';
+    error.innerHTML = message;
+    return false;
+  } else {
+    return true;
+  }
 };
