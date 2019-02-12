@@ -333,10 +333,7 @@ h2{
 }
 .like-word {
   font-size: 12px;
-  width: 80px;
-  float: right;
-  margin-right: 15px;
-  margin-top: 4px;
+  width: 40px;
 }
 .btn-edit-update {
   display: none;

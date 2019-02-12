@@ -18,8 +18,8 @@ export const btnSignIn = (elemt) => {
   const passwordLogIn = elemt.querySelector('#input-password').value; // Input contraseña de inicio de sesión
   const errorText = elemt.querySelector('#error-text');
   if (validateloginForm(emailLogIn, passwordLogIn, errorText) === true) {
-    loginCall(emailLogIn, passwordLogIn, errorText);
-    loginCheckIn();
+    loginCall(emailLogIn, passwordLogIn);
+    loginCheckIn(errorText);
   };
 };
 

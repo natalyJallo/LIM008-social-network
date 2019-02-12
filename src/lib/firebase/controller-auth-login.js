@@ -49,10 +49,25 @@ export const updateContent = (id, contentPost) => {
   });
 };
 export const updateLikePost = (id, countLikes) => {
-  console.log(`del post =>${id} se agrega un atributo likes.megusta:'0'`);
-  let refLikes = firebase.firestore().collection('post').doc(id);
+  console.log(`del post =>${id} se agrega un atributo likes.megusta:` + countLikes);
+  let refLikes = firebase.firestore().collection('posts').doc(id);
   return refLikes.update({likes: countLikes});
 };
 
 export const isUserSignedIn = () => firebase.auth().currentUser.uid;
 
+export const updateProfile = (name, lastName) => {
+  let user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: name + ' ' + lastName,
+  }).then(() => {
+    console.log('Se Actualizo de manera exitosa');
+  }).catch(error => {
+    console.log(error);
+  });
+};
+
+// funcion para editar post
+export const editPosts = (idPost, textNewNote) => firebase.firestore().collection('posts').doc(idPost).update({
+  content: textNewNote,
+});

@@ -1,24 +1,26 @@
-import {signInUser, loginAuth, closeSignIn, signUpUser} from '../firebase/controller-auth-login.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser, updateProfile} from '../firebase/controller-auth-login.js';
+
 
 /* Funcion de inicio de sesion Firebase*/
-export const loginCall = (email, password) => {
+export const loginCall = (email, password, error) => {
   signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
-    // invalid.innerHTML = 'El email o la contraseña son inválidos.';
+    error.innerHTML = 'El email o la contraseña son inválidos.';
     // console.log(invalid);
   });
 };
 
 // para observar los datos del usuario que inició sesión.
-export const loginCheckIn = () => {
+export const loginCheckIn = (error) => {
   loginAuth(() => {
     const user = firebase.auth().currentUser;
+    const messageUserNoRegister = error;
     if (user !== null) {
       const emailUser = user.email;
       window.location.hash = '#/home';
     } else {
-      console.log('No esta registrado todavia');
+      messageUserNoRegister.innerHTML = 'No esta registrado todavia';
     }
   });
 };
@@ -37,6 +39,7 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
         url: 'http://127.0.0.1:5500/src/'
       };
       result.user.sendEmailVerification(configuracion);
+      updateProfile(name, lastName);
       firebase.auth().signOut();
     }).catch((error) => {
       const errorMessage = error.message;
