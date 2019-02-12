@@ -27,6 +27,12 @@ export const getPosts = (callback) =>
     callback(data);
   });
 
+  // funcion para editar post
+export const editPosts = (idPost, textNewNote) => firebase.firestore().collection('posts').doc(idPost).update({
+    content: textNewNote, 
+  }); 
+  
+
 export const updateProfile = (name, lastName) => {
   let user = firebase.auth().currentUser;
   user.updateProfile({
