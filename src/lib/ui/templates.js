@@ -101,7 +101,7 @@ export const viewTemplates = {
                   </select>
                   <button id='btn-posts' class='btn-post'>Publicar</button>
                 </div>
-                <ul id='post-container' class='list-posts'></ul>
+                <div id='post-container' class='list-posts'></div>
                 `;
     const section = document.createElement('section');
     section.innerHTML = tmpl;
@@ -117,7 +117,7 @@ export const viewTemplates = {
     getPosts((posts) => {  
       postContainer.innerHTML = '';
       posts.forEach(post => {
-        console.log(post);
+      // console.log(post);
         postContainer.appendChild(noteFunction(post));
       });
     });

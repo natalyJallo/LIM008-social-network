@@ -27,9 +27,8 @@ export const getPosts = (callback) =>
 
 
 // funcion para editar post
-export const editPosts = (idPost, textNewNote, privacySelected) => firebase.firestore().collection('posts').doc(idPost).update({
+export const editPosts = (idPost, textNewNote) => firebase.firestore().collection('posts').doc(idPost).update({
   content: textNewNote, 
-  privacy: privacySelected  
 }); 
 
 /* Funcion para obtener los datos de mi usuario  - JENI*/

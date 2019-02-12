@@ -26,9 +26,8 @@ export const getPosts = (callback) =>
   });
 
 // funcion para editar post
-export const editPosts = (idPost, textNewNote, privacySelected) => firebase.firestore().collection('posts').doc(idPost).update({
+export const editPosts = (idPost, textNewNote) => firebase.firestore().collection('posts').doc(idPost).update({
   content: textNewNote, 
-  privacy: privacySelected  
 }); 
 
 /* funcion para editar post
