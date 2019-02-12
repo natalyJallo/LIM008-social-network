@@ -298,10 +298,10 @@ h2{
   margin-bottom: 10px;
 }
 .box-post-message{
-  width: 270px;
-  height: 140px;
-  background-color: white;
-  margin-bottom: 10px;
+  width: 97%;
+  height: 135px;
+    background-color: white;
+    margin-bottom: 10px;
 }
 .align-2 {
   margin: 10px 10px;
@@ -310,7 +310,7 @@ h2{
   font-size: 10px;
   width: 120px;
   float: right;
-  margin-right: 100px;
+  margin-right: 90px;
   margin-top: 15px;
 }
 .icon-privacy {
@@ -338,13 +338,16 @@ h2{
   margin-right: 15px;
   margin-top: 4px;
 }
-.btn-edit-delete {
+.btn-edit-update {
+  display: none;
+}
+.btn-edit {
   float: right;
   width: 60px;
   font-size: 11px;
-}
-.btn-edit-update {
-  display: none;
+  background-color: #9D66A9;
+  border: 1px solid  #9D66A9;
+  margin-top: 3px;
 }
 
 /* Estilo para le muro de los posts */

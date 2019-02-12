@@ -1,7 +1,7 @@
 import {closeSessionCall } from '../view-controller/view-controller-auth.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from '../view-controller/view-controller.js';
 import { getPosts, isUserSignedIn,  } from '../firebase/controller-auth-login.js';
-
+import {postFunction} from '../ui/template-posts.js';
 
 // template de inicio de sesion, registro y pagina principal de la red social
 export const viewTemplates = {
@@ -123,14 +123,16 @@ export const viewTemplates = {
       postSubmit(section);
     });
 
-    const container = document.querySelector('post-container');
-    getPosts((posts) => {
-      const uid = isUserSignedIn();   
+    const postContainer = section.querySelector('#post-container');    
+
+    getPosts((posts) => {  
+      postContainer.innerHTML = '';
       posts.forEach(post => {
-        container.appendChild(postFunction(post, uid));
+        const uid = isUserSignedIn();
+        postContainer.appendChild(postFunction(post, uid));
       });
     });
-    
+
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
