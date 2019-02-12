@@ -1,6 +1,6 @@
 import {closeSessionCall } from './index.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from './view-controller.js';
-import {getPosts, /* getUserData */} from './firebase/controller-firebase.js';
+import {getPosts} from './firebase/controller-firebase.js';
 
 export const viewTemplates = {
   signIn: () => { 
