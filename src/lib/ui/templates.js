@@ -89,8 +89,11 @@ export const viewTemplates = {
                   <label class='icon-menu' for='menu-bar'><img src='img/boton-menu.png' alt='icono de menu' class='img-menu  align top'></label>
                   <nav class='menu-nav'>
                     <ul class='menu-ul'>
-                      <li class='li-menu'><a class='profile'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'><h2 class='text-4 margin'>Perfil</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 class='text-3'>Historias</h2></a></li>
+                      <li class='li-menu'><a class='profile'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'><h2 class='text-4 margin'>Perfil</h2></a>
+                      <ul>Datos Personales</ul>
+                      <li>
+                      </li>
+                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 class='text-3'>Posts Privados</h2></a></li>
                       <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-3'>Eventos</h2></a></li>
                       <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-3'>Grupos</h2></a></li>
                       <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-3'>Comunidades</h2></a></li>

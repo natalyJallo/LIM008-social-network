@@ -14,22 +14,21 @@ const changeTmp = (hash) => {
 const viewTemp = (routers) => {
   let router = routers.substr(2, routers.length - 2);
   const navPost = document.getElementById('navPost');
+  const container = document.getElementById('container');
   navPost.innerHTML = '';
+  container.innerHTML = '';
   switch (router) {
   case 'home':
     navPost.appendChild(viewTemplates.home()); 
     break;
   case 'signIn':
-  container.innerHTML = '';
-  container.appendChild(viewTemplates.signIn());
+    container.appendChild(viewTemplates.signIn());
     break;
   case 'signUp':
-  container.innerHTML = '';
-  container.appendChild(viewTemplates.signUp());
+    container.appendChild(viewTemplates.signUp());
     break;
   default:
-  container.innerHTML = '';
-  container.appendChild(viewTemplates.signIn());
+    container.appendChild(viewTemplates.signIn());
     break;
   }
 };

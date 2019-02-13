@@ -53,15 +53,15 @@ export const postFunction = (post, uidUser) => {
 
 /* CONTAINER de mis posts(ul) */   
 
-// export const postInSection = (posts, uid) => {
-//   const postListWall = posts.querySelector('#post-container');
-//   postListWall.innerHTML = '';
-//   posts.forEach((post) => {
-//     if (post.privacy === 'privado' && post.uid === uid) {
-//       postListWall.appendChild(postFunction(post, uid));
-//     } else if (post.privacy === 'publico') {
-//       postListWall.appendChild(postFunction(post, uid));
-//     }
-//   });
-//   return createPostInWall;
-// };
+export const postInSection = (posts, uid) => {
+  const postListWall = posts.querySelector('#post-container');
+  postListWall.innerHTML = '';
+  posts.forEach((post) => {
+    if (post.privacy === 'privado' && post.uid === uid) {
+      postListWall.appendChild(postFunction(post, uid));
+    } else if (post.privacy === 'publico') {
+      postListWall.appendChild(postFunction(post, uid));
+    }
+  });
+  return createPostInWall;
+};
