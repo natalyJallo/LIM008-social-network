@@ -15,7 +15,7 @@ export const ingresoFacebook = () => {
     }
   });
 };
-  
+
 /* Funcion inicio de sesión con Google */
 export const ingresoGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();

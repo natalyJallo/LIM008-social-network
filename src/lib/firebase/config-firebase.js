@@ -1,4 +1,3 @@
-
 /* Configuracion de proyecto de firebase*/
 export const configFirebase = () => {
   const config = {
@@ -8,6 +7,6 @@ export const configFirebase = () => {
     projectId: 'socialnetworking-d3f4e',
     storageBucket: 'socialnetworking-d3f4e.appspot.com',
     messagingSenderId: '378504101194'
-};
+  };
   firebase.initializeApp(config);
 };
