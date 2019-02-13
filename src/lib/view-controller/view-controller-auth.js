@@ -1,13 +1,12 @@
 import {signInUser, loginAuth, closeSignIn, signUpUser, updateProfile} from '../firebase/controller-auth-login.js';
 
-
-/* Funcion de inicio de sesion Firebase*/
-export const loginCall = (email, password, error) => {
+export const loginCall = (email, password, invalid) => {
   signInUser(email, password).catch((error) => {
     const errorCode = error.code;  
     const errorMessage = error.message;
-    error.innerHTML = 'El email o la contraseña son inválidos.';
-    // console.log(invalid);
+    invalid.innerHTML = errorCode;
+    invalid.innerHTML = errorMessage;
+    invalid.innerHTML = 'El email o la contraseña son inválidos.';
   });
 };
 
@@ -23,49 +22,50 @@ export const loginCheckIn = (error) => {
       messageUserNoRegister.innerHTML = 'No esta registrado todavia';
     }
   });
-};
+};   
 
 /* Funcion de cerrar sesion de Firebase*/
 export const closeSessionCall = () => {
   closeSignIn().then(() => {
   }).catch((error) => error);
 };
-
 /* Funcion de registro de Firebase*/
-export const registerAcccount = (email, password, name, lastName, nickName, country) => {
+export const registerAcccount = (email, password, name, lastName, nickName, country, errorText) => {
   signUpUser(email, password)
     .then(result => {
-      const configuracion = {
+      const configuration = {
         url: 'http://127.0.0.1:5500/src/'
       };
       result.user.sendEmailVerification(configuracion);
+      addData(email, password, name, lastName, nickName, country, errorText);
       updateProfile(name, lastName);
       firebase.auth().signOut();
+      result.user.sendEmailVerification(configuration);
     }).catch((error) => {
+      console.log('registerAccount fail');
       const errorMessage = error.message;
-      // errorPass.innerHTML= 'La contraseña debe tener un mínimo de 6 caracteres'
-      alert('Error :' + errorMessage);
+      errorText.innerHTML = 'Error :' + errorMessage;
     });
-  const firestore = firebase.firestore();
-  let emailUser = email;
-  let passwordUser = password;
-  let nameUser = name;
-  let lastNameUser = lastName;
-  let nickNameUser = nickName;
-  let countryUser = country;
-  let data = {};
-  let users = firestore.collection('users');
-  users.add(data = {
-    email: emailUser,
-    password: passwordUser,
-    name: nameUser,
-    lastName: lastNameUser,
-    nickName: nickNameUser,
-    country: countryUser,
-  }).then(function(result) {
-    console.log('Document written with ID: ', result.id);
-  }).catch((error) => {
-    console.log('no se agrego a base de datos');
+
+
+export const addData = (email, password, name, lastName, nickName, country, errorText) => {
+  console.log('Entro a addData');
+  let uidNumber = firebase.auth().currentUser.uid;
+  console.log(uidNumber);
+  return firebase.firestore().collection('users').doc(uidNumber).set({
+    uid: uidNumber,
+    email: email,
+    password: password,
+    name: name,
+    lastName: lastName,
+    nickName: nickName,
+    country: country
+  }).catch(error => {
+    errorText.innerHTML = 'Hubo un error en su registro';
+    console.error('Error writing document: ', error);    
+    console.log('Registro en base de datos no exitoso');
+  }).then(result => {
+    console.log('Registro en base de datos exitoso');
   });
 };
 
@@ -106,8 +106,7 @@ export const postDate = (date) => {
   let month = '' + (date.getMonth() + 1);
   let day = '' + date.getDate();
   let year = date.getFullYear();
-    
-    
+  
   if (month.length < 2) month = '0' + month;
   if (day.length < 2) day = '0' + day;
     

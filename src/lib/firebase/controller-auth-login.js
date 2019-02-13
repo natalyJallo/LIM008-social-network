@@ -1,4 +1,5 @@
 import {postDate} from '../view-controller/view-controller-auth.js';
+
 export const signInUser = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
 export const loginAuth = (user) => firebase.auth().onAuthStateChanged(user);
@@ -9,24 +10,25 @@ export const signUpUser = (email, password) => firebase.auth().createUserWithEma
 
 export const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
 
+/* Esta es mi funcion de agregar post a mi coleccion posts - JENI */
 export const addPost = (textNewPost, privacyUser, profileUser, nameUser, uidUser, likesUser) => firebase.firestore().collection('posts').add({
-  // profileUid: profileUser,
-  name: nameUser,
+  profileUid: profileUser,
   content: textNewPost, 
   privacy: privacyUser,
+  name: nameUser,
   uid: uidUser,
   likes: likesUser,
   date: firebase.firestore.FieldValue.serverTimestamp()
 });
 
-/* Funcion para obtener mis post de mi coleccion */   
+/* Funcion para obtener mis post de mi coleccion */
 export const getPosts = (callback) => {
   firebase.firestore().collection('posts').onSnapshot((querySnapshot) => {
     let data = [];
     querySnapshot.forEach(doc => {
       data.push({ 
         id: doc.id,
-        // profileUid: doc.data().profileUid,
+        profileUid: doc.data().profileUid,
         name: doc.data().name,
         content: doc.data().content,
         privacy: doc.data().privacy,
@@ -38,20 +40,27 @@ export const getPosts = (callback) => {
   });
 };
 
+export const updateProfile = (name, lastName) => {
+  let user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: name + ' ' + lastName,
+  }).then(() => {
+    console.log('Se Actualizo de manera exitosa');
+  }).catch(error => {
+    console.log(error);
+  });
+};
+
 export const getUserName = () => firebase.auth().currentUser.displayName;
 
 export const getProfilePicUrl = () => firebase.auth().currentUser.photoURL;
 
-export const updateContent = (id, contentPost) => {
-  let refDoc = firebase.firestore().collection('posts').doc(id);
-  return refDoc.update({
-    content: contentPost
-  });
-};
+
 export const updateLikePost = (id, countLikes) => {
-  console.log(`del post =>${id} se agrega un atributo likes.megusta:` + countLikes);
   let refLikes = firebase.firestore().collection('posts').doc(id);
-  return refLikes.update({likes: countLikes});
+  return refLikes.update({
+    likes: countLikes
+  });
 };
 
 export const isUserSignedIn = () => firebase.auth().currentUser.uid;

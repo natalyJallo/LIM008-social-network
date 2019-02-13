@@ -1,6 +1,7 @@
+
 import { ingresoFacebook, ingresoGoogle} from '../firebase/controller-auth-apis.js';
 import {loginCall, loginCheckIn, registerAcccount, validateloginForm, validationPost} from './view-controller-auth.js';
-import {addPost, isUserSignedIn, getUserName, getProfilePicUrl, updateContent, updateLikePost } from '../firebase/controller-auth-login.js';
+import {addPost, isUserSignedIn, getUserName, getProfilePicUrl, updateLikePost } from '../firebase/controller-auth-login.js';
 
 export const btnGoogle = () => {
   ingresoGoogle();
@@ -35,7 +36,7 @@ export const btnRegister = (element) => {
   window.location.hash = '#/session';
 };
 
-/* Aqui obtengo el txto publicado y la privacidad selecionada -JENI */
+/* Aqui obtengo el texto publicado y la privacidad selecionada -JENI */
 export const postSubmit = (element) => {
   let content = element.querySelector('#post-input');
   let privacy = element.querySelector('#privacy-selector');
@@ -63,10 +64,23 @@ export const postSubmit = (element) => {
   }
 };
 
-export const updatePostOnClick = (post, messageUpdate) => {
-  return updateContent(post.id, messageUpdate);
+export const updateLikeCount = (post, like) => {
+  console.log(like);
+  return updateLikePost(post, like);
 };
 
-export const updateLikeCount = (post, like) => {
-  return updateLikePost(post.id, like);
+
+/* CONTAINER de mis posts(ul) */  
+
+export const postInSection = (posts, uid) => {
+  const postListWall = posts.querySelector('#post-container');
+  postListWall.innerHTML = '';
+  posts.forEach((post) => {
+    if (post.privacy === 'privado' && post.uid === uid) {
+      postListWall.appendChild(postFunction(post, uid));
+    } else if (post.privacy === 'publico') {
+      postListWall.appendChild(postFunction(post, uid));
+    }
+  });
+  return createPostInWall;
 };

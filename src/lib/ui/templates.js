@@ -1,6 +1,6 @@
 import {closeSessionCall } from '../view-controller/view-controller-auth.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from '../view-controller/view-controller.js';
-import { getPosts, isUserSignedIn,  } from '../firebase/controller-auth-login.js';
+import { getPosts, isUserSignedIn} from '../firebase/controller-auth-login.js';
 import {postFunction} from '../ui/template-posts.js';
 
 // template de inicio de sesion, registro y pagina principal de la red social
@@ -115,27 +115,27 @@ export const viewTemplates = {
                   </select>
                   <button id='btn-posts' class='btn-post btn-color'>Publicar</button>
                 </div>
-                <ul id='post-container' class='list-posts'></ul>
+                <div id='post-container' class='list-posts'></div>
                 `;
     const section = document.createElement('header');
     section.innerHTML = tmpl;
 
+    
     /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos */
     const btnPost = section.querySelector('#btn-posts');
     btnPost.addEventListener('click', () => {
       postSubmit(section);
     });
 
-    const postContainer = section.querySelector('#post-container');    
-
-    getPosts((posts) => {  
-      postContainer.innerHTML = '';
+    const container = section.querySelector('#post-container');
+    getPosts((posts) => {
+      container.innerHTML = '';
       posts.forEach(post => {
-        const uid = isUserSignedIn();
-        postContainer.appendChild(postFunction(post, uid));
+        console.log(post);
+        container.appendChild(postFunction(post));
       });
     });
-
+    
     const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
