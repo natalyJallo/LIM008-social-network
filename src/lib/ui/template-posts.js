@@ -1,5 +1,6 @@
 import {deletePost, editPosts} from '../firebase/controller-auth-login.js';
 import {updatePostOnClick, updateLikeCount} from '../view-controller/view-controller.js';
+
 /* Funcion con el maquetado de mis post*/
 export const postFunction = (post, uidUser) => {
   const tmp = `<div class='box-post large2'>
@@ -22,7 +23,7 @@ export const postFunction = (post, uidUser) => {
   let postList = document.createElement('div');
   postList.setAttribute('id', `id-${post.id}`);
   postList.innerHTML = tmp;
-
+  
   const btnDeletePost = postList.querySelector(`#btn-deleted-${post.id}`);
   btnDeletePost.addEventListener('click', () => deletePost(post.id));
 
@@ -33,16 +34,13 @@ export const postFunction = (post, uidUser) => {
     updateLikeCount(post, post.likes += 1); 
   });
 
-  const btnSavePost = postList.querySelector(`#btn-save-${post.id}`);
-
   const btnEditPost = postList.querySelector(`#btn-edit-${post.id}`);
- 
   btnEditPost.addEventListener('click', () => {
     document.getElementById(`textarea-post-${post.id}`).removeAttribute('disabled');
     btnSavePost.removeAttribute('hidden');
     btnEditPost.setAttribute('hidden', 'true');
   });
-
+  const btnSavePost = postList.querySelector(`#btn-save-${post.id}`);
   btnSavePost.addEventListener('click', () => {
     const postContent = document.getElementById(`textarea-post-${post.id}`);
     editPosts(post.id, postContent.value);

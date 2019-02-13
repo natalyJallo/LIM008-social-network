@@ -224,9 +224,7 @@ h2{
 .li-menu {
   margin: 20px 30px;
 }
-.profile {
-  /* margin-left: 30px; */
-}
+
 .items {
   width: 250px;
   height: 60px;
@@ -375,5 +373,3 @@ h2{
     width: 100%
   }  
 }
-
-

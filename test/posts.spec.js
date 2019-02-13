@@ -15,6 +15,8 @@ const fixtureData = {
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
+import { addPost } from '../src/';
+
 describe('lista de posts', () => {
   it('Debería porder agregar un post', (done) => {
     return addPost('Feliz Cumpleaños')
