@@ -65,7 +65,7 @@ export const registerAcccount = (email, password, name, lastName, nickName, coun
   }).then(function(result) {
     console.log('Document written with ID: ', result.id);
   }).catch((error) => {
-    console.log('no se agrego a lase de datos');
+    console.log('no se agrego a base de datos');
   });
 };
 
