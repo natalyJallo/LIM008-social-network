@@ -13,7 +13,14 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 // importamos la funcion que vamos a testear
-import { signInUser, loginAuth, closeSignIn, signUpUser } from '../src/lib/firebase/controller-firebase.js';
+import { signInUser, closeSignIn, signUpUser } from '../src/lib/firebase/controller-auth-login.js';
+import { validateloginForm } from '../src/lib/view-controller/view-controller-auth.js';
+
+// DOM para poder leer el error de mensaje
+const outPut = {condition: true};
+const outPut2 = {condition: false, message: 'Contraseña mayor a 6 caracteres'};
+const outPut3 = {condition: false, message: 'Ingrese su email correcto'};
+const outPut4 = {condition: false, message: 'Ingrese un email y un password'};
 
 describe('signInUser', () => {
   it('debería ser una función', () => {
@@ -24,17 +31,6 @@ describe('signInUser', () => {
       .then((user) => {
         expect(user.email).toBe('front@end.la');
       });
-  });
-});
-
-describe('loginAuth', () => {
-  it('debería ser una función', () => {
-    expect(typeof loginAuth).toBe('function');
-  });
-  it('Debería poder auntentificar el email y contraseña', () => {
-    return loginAuth(() => {
-      
-    });
   });
 });
 
@@ -56,11 +52,21 @@ describe('signUpUser', () => {
   });
 });
 
-// describe('D', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof signUpUser).toBe('function');
-//   });
-//   it('Debería poder registrar a un usuario', () => {
-//     return signUpUser('front@end.la', '123456');
-//   });
-// });
+describe('validateloginForm', () => {
+  it('Debería ser una función', () => {
+    expect(typeof validateloginForm).toBe('function');
+  });
+  it('Deberia validar que el email y password no sea vacio', () => {
+    expect(validateloginForm('margarita12@gmail.com', '234567')).toEqual(outPut);
+  });
+  it('Deberia validar que el password no sea menor de 6 caracteres', () => {
+    expect(validateloginForm('margarita12@gmail.com', '12')).toEqual(outPut2);
+  });
+  it('Deberia validar que el email sea correcto', () => {
+    expect(validateloginForm('natita', '1234567')).toEqual(outPut3);
+  });
+  it('Deberia validar que el email y password sea vacio', () => {
+    expect(validateloginForm('', '')).toEqual(outPut4);
+  });
+});
+
