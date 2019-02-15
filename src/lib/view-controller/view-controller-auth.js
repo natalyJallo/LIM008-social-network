@@ -34,40 +34,30 @@ export const closeSessionCall = () => {
 };
 
 /* Funcion de registro de Firebase*/
-export const registerAcccount = (email, password, name, lastName, nickName, country) => {
+export const registerAcccount = (email, password, name, lastName, nickName, country) => {  
   signUpUser(email, password)
     .then(result => {
-      const configuracion = {
+      const configuration = {
         url: 'http://127.0.0.1:5500/src/'
       };
-      result.user.sendEmailVerification(configuracion);
+      let uidNumber = firebase.auth().currentUser.uid;
+      addData(email, password, name, lastName, nickName, country, uidNumber);
       updateProfile(name, lastName);
       firebase.auth().signOut();
-    }).catch((error) => {
-      const errorMessage = error.message;
-      // errorPass.innerHTML= 'La contraseña debe tener un mínimo de 6 caracteres'
-      alert('Error :' + errorMessage);
+      result.user.sendEmailVerification(configuration);
     });
-  const firestore = firebase.firestore();
-  let emailUser = email;
-  let passwordUser = password;
-  let nameUser = name;
-  let lastNameUser = lastName;
-  let nickNameUser = nickName;
-  let countryUser = country;
-  let data = {};
-  let users = firestore.collection('users');
-  users.add(data = {
-    email: emailUser,
-    password: passwordUser,
-    name: nameUser,
-    lastName: lastNameUser,
-    nickName: nickNameUser,
-    country: countryUser,
-  }).then(function(result) {
-    console.log('Document written with ID: ', result.id);
-  }).catch((error) => {
-    console.log('no se agrego a lase de datos');
+};
+
+
+export const addData = (email, password, name, lastName, nickName, country, uidNumber) => {
+  return firebase.firestore().collection('users').doc(uidNumber).set({
+    uid: uidNumber,
+    email: email,
+    password: password,
+    name: name,
+    lastName: lastName,
+    nickName: nickName,
+    country: country
   });
 };
 

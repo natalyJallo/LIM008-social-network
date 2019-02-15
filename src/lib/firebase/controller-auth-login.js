@@ -8,8 +8,7 @@ export const signUpUser = (email, password) => firebase.auth().createUserWithEma
 
 export const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
 
-export const addPost = (textNewPost, privacyUser, profileUser, nameUser, uidUser, likesUser) => firebase.firestore().collection('posts').add({
-  profileUid: profileUser,
+export const addPost = (textNewPost, privacyUser, nameUser, uidUser, likesUser) => firebase.firestore().collection('posts').add({
   name: nameUser,
   content: textNewPost, 
   privacy: privacyUser,
@@ -18,43 +17,59 @@ export const addPost = (textNewPost, privacyUser, profileUser, nameUser, uidUser
   date: firebase.firestore.FieldValue.serverTimestamp()
 });
 
-/* Funcion para obtener mis post de mi coleccion */   
+/* Funcion para obtener mis post de mi coleccion */
 export const getPosts = (callback) => {
-  firebase.firestore().collection('posts').onSnapshot((querySnapshot) => {
-    let data = [];
-    querySnapshot.forEach(doc => {
-      data.push({ 
-        id: doc.id,
-        profileUid: doc.data().profileUid,
-        name: doc.data().name,
-        content: doc.data().content,
-        privacy: doc.data().privacy,
-        uid: doc.data().uid,
-        likes: doc.data().likes,
+  firebase.firestore().collection('posts').orderBy('date', 'desc')
+    .onSnapshot((querySnapshot) => {
+      let data = [];
+      querySnapshot.forEach(doc => {
+        data.push({ 
+          id: doc.id,
+          profileUid: doc.data().profileUid,
+          name: doc.data().name,
+          content: doc.data().content,
+          privacy: doc.data().privacy,
+          uid: doc.data().uid,
+          likes: doc.data().likes,
+        });
       });
+      callback(data);
     });
-    callback(data);
-  });
 };
+
+/* Funcion para obtener los post privados de mi coleccion */
+export const getPrivPosts = (callback) => {
+  firebase.firestore().collection('posts')
+    .orderBy('date', 'desc')
+    .where('privacy', '==', 'Privado').onSnapshot((querySnapshot) => {
+      let data = [];
+      querySnapshot.forEach(doc => {
+        data.push({ 
+          id: doc.id,
+          profileUid: doc.data().profileUid,
+          name: doc.data().name,
+          content: doc.data().content,
+          privacy: doc.data().privacy,
+          uid: doc.data().uid,
+          likes: doc.data().likes,
+        });
+      });
+      callback(data);
+    });
+};
+
 // Funcion para obtener el displaynName del usuario
 export const getUserName = () => firebase.auth().currentUser.displayName;
-
-// Funcion para actualizar el contenido del post
-export const updateContent = (id, contentPost) => {
-  let refDoc = firebase.firestore().collection('posts').doc(id);
-  return refDoc.update({
-    content: contentPost
-  });
-};
 
 // Funcion para actualizar los likes del post
 export const updateLikePost = (id, countLikes) => {
   console.log(`del post =>${id} se agrega un atributo likes.megusta:'0'`);
-  let refLikes = firebase.firestore().collection('post').doc(id);
+  let refLikes = firebase.firestore().collection('posts').doc(id);
   return refLikes.update({
     likes: countLikes
   });
 };
+
 
 // Funcion para saber si un usuario esta registrado
 export const isUserSignedIn = () => firebase.auth().currentUser.uid;
@@ -64,10 +79,6 @@ export const updateProfile = (name, lastName) => {
   let user = firebase.auth().currentUser;
   user.updateProfile({
     displayName: name + ' ' + lastName,
-  }).then(() => {
-    console.log('Se Actualizo de manera exitosa');
-  }).catch(error => {
-    console.log(error);
   });
 };
 

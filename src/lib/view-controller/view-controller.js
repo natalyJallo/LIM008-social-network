@@ -37,7 +37,6 @@ export const btnFacebook = () => {
 /* Inicio de sesión por email y contraseña y registro*/
 export const btnSignIn = (elemt) => {
   const emailLogIn = elemt.querySelector('#input-email').value;
-  console.log(emailLogIn); // Input email de inicio de sesión
   const passwordLogIn = elemt.querySelector('#input-password').value; // Input contraseña de inicio de sesión
   const errorText = elemt.querySelector('#error-text');
   const resultValidation = validateloginForm(emailLogIn, passwordLogIn);

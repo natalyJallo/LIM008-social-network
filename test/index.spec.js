@@ -13,8 +13,8 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 // importamos la funcion que vamos a testear
-import { signInUser, closeSignIn, signUpUser } from '../src/lib/firebase/controller-auth-login.js';
-import { validateloginForm } from '../src/lib/view-controller/view-controller-auth.js';
+import { signInUser, loginAuth, closeSignIn, signUpUser, updateProfile, isUserSignedIn } from '../src/lib/firebase/controller-auth-login';
+import { addData, loginCall, registerAcccount, validateloginForm} from '../src/lib/view-controller/view-controller-auth.js'; 
 
 // DOM para poder leer el error de mensaje
 const outPut = {condition: true};
@@ -23,13 +23,10 @@ const outPut3 = {condition: false, message: 'Ingrese su email correcto'};
 const outPut4 = {condition: false, message: 'Ingrese un email y un password'};
 
 describe('signInUser', () => {
-  it('debería ser una función', () => {
-    expect(typeof signInUser).toBe('function');
-  });
   it('Debería poder iniciar sesion', () => {
-    return signInUser('front@end.la', '123456')
+    return signInUser('gatitosbonitos@gmail.com', '123456')
       .then((user) => {
-        expect(user.email).toBe('front@end.la');
+        expect(user.email).toBe('gatitosbonitos@gmail.com');
       });
   });
 });
@@ -43,12 +40,66 @@ describe('closeSignIn', () => {
   });
 });
 
+describe('isUserSignedIn', () => {
+  it('debería ser una función', () => {
+    expect(typeof isUserSignedIn).toBe('function');
+  });
+  it('Debería poder autenticar el email para ingresar a la pagina al iniciar sesion', () => {
+    signInUser('gatitosbonitos@gmail.com', '123456').then(() => {
+      return isUserSignedIn('P37Kz7aGSiXpm6QCkrfsYvjG5r72');
+    });
+  });
+});
+
+describe('signUpUser', () => {
+  it('Debería poder registrar a un usuario', () => {
+    return signUpUser('gatitosbonitos@gmail.com', '234567');
+  });
+});
+
+describe('updateProfile', () => {
+  it('Debería poder actualizar el nombre del usuario', () => {
+    signInUser('gatitosbonitos@gmail.com', '123456').then(() => {
+      return updateProfile('Nataly', 'Jallo');
+    });
+  });
+});
+
+describe('addData', () => {
+  it('Debería poder añadir la data del usuario', () => {
+    return addData('gatitosbonitos@gmail.com', '123456', 'Nataly', 'Jallo', 'Naty', 'Peru', 'e4grdsvvde2434434');
+  });
+});
+
+describe('loginCall', () => {
+  it('Debería poder llamarme la función para loguearme', () => {
+    signInUser('gatitosbonitos@gmail.com', 'abc123').then(() => {
+      return loginCall('gatitosbonitos@gmail.com', 'abc123');
+    });
+  });
+});
+
+describe('registerAcccount', () => {
+  it('Debería poder llamarme la función para loguearme', () => {
+    return registerAcccount('gatitosbonitos@gmail.com', '123456', 'Nataly', 'Jallo', 'Naty', 'Peru');
+  });
+});
+
 describe('signUpUser', () => {
   it('debería ser una función', () => {
     expect(typeof signUpUser).toBe('function');
   });
   it('Debería poder registrar a un usuario', () => {
-    return signUpUser('margarita12@gmail.com', '234567');
+    return signUpUser('toxoloc@parcel4.net', '123456nat');
+  });
+});
+
+describe('loginAuth', () => {
+  it('debería ser una función', () => {
+    expect(typeof loginAuth).toBe('function');
+  });
+  it('Debería poder autenticar a un usuario', () => {
+    return loginAuth('toxoloc@parcel4.net', '123456nat');
   });
 });
 
@@ -69,4 +120,3 @@ describe('validateloginForm', () => {
     expect(validateloginForm('', '')).toEqual(outPut4);
   });
 });
-

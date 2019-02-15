@@ -1,6 +1,6 @@
 import {closeSessionCall } from '../view-controller/view-controller-auth.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from '../view-controller/view-controller.js';
-import { getPosts, isUserSignedIn } from '../firebase/controller-auth-login.js';
+import {getPosts, isUserSignedIn } from '../firebase/controller-auth-login.js';
 import {postFunction} from '../ui/template-posts.js';
 
 // template de inicio de sesion, registro y pagina principal de la red social
@@ -89,21 +89,23 @@ export const viewTemplates = {
                   <label class='icon-menu' for='menu-bar'><img src='img/boton-menu.png' alt='icono de menu' class='img-menu  align top'></label>
                   <nav class='menu-nav'>
                     <ul class='menu-ul'>
-                      <li class='li-menu'><a class='profile'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'><h2 class='text-4 margin'>Perfil</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 class='text-3'>Historias</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-3'>Eventos</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-3'>Grupos</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-3'>Comunidades</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-3'>Apoyo Legal</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-3'>Apoyo Psicologico</h2></a></li>
-                      <li class='li-menu2'><a class='items' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-3'>Salir</h2></a></li>
+                      <li class='li-menu'><a class='profile'><h2 class='text-4 margin'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'>Perfil</h2></a></li>
+                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "public-stories" class='text-3'>Historias</h2></a></li>
+                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "my-stories" class='text-3'>Historias de mis amigos</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-6'>Historias Publicas</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-6'>Grupos</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-6'>Comunidades</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2' href='https://www.gob.pe/479-denunciar-violencia-familiar-y-sexual' target='_blank'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-6'>Apoyo Legal</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-6'>Apoyo Psicologico</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-6'>Salir</h2></a></li>
                     </ul>
                   </nav><h1 class='text-logo  align text-logo-header'>JoinClude</h1></div>
                   </header>
                   <div class='' id='log-out'>
                   <h1 class='text-3 text-welcome'>Bienvenido :</h1>
                   </div>
-                  <div class='box-post large'>
+                  <div class='model-post'>
+                  <div class='box-post large3'>
                   <textarea class='box-message' name='post-input' id='post-input' cols='50' rows='10' placeholder = "Agrega un post" required></textarea>
                   <h3 id='post-error' class='message-error msg-post'></h3>
                   <select id='privacy-selector' class='select-privacy'>
@@ -111,20 +113,22 @@ export const viewTemplates = {
                     <option value='Privado'>Privado</option>
                   </select>
                   <button id='btn-posts' class='btn-post btn-color'>Publicar</button>
-                </div>
+                </div></div>
                 <ul id='post-container' class='list-posts'></ul>
                 `;
     const section = document.createElement('header');
     section.innerHTML = tmpl;
-
+                  
     /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos */
     const btnPost = section.querySelector('#btn-posts');
     btnPost.addEventListener('click', () => {
       postSubmit(section);
     });
-
     const postContainer = section.querySelector('#post-container');    
-
+    
+    const privPostBtn = section.querySelector('#my-stories');
+    const btnCloseSession = section.querySelector('#log-out-btn');
+            
     getPosts((posts) => {  
       postContainer.innerHTML = '';
       posts.forEach(post => {
@@ -132,13 +136,28 @@ export const viewTemplates = {
         postContainer.appendChild(postFunction(post, uid));
       });
     });
-
-    const btnCloseSession = section.querySelector('#log-out-btn');
+    
+    const publicPostBtn = section.querySelector('#public-stories');
+    publicPostBtn.addEventListener('click', () => {
+      document.location.reload();      
+      window.location.hash = '#/home';
+    });
+            
+    privPostBtn.addEventListener('click', () => {
+      getPrivPosts((posts) => {  
+        postContainer.innerHTML = '';
+        posts.forEach(post => {
+          const uid = isUserSignedIn();
+          postContainer.appendChild(postFunction(post, uid));
+        });
+      });
+    });
+                
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
       window.location.hash = '#/signIn';
     });
-
+            
     return section;
-  },
+  }
 };
