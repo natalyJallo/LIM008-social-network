@@ -70,7 +70,6 @@ export const updateLikePost = (id, countLikes) => {
   });
 };
 
-
 // Funcion para saber si un usuario esta registrado
 export const isUserSignedIn = () => firebase.auth().currentUser.uid;
 

@@ -1,6 +1,6 @@
 import { facebookLogin, googleLogin} from '../firebase/controller-auth-apis.js';
 import {loginCall, loginCheckIn, registerAcccount, validateloginForm, validationPost} from './view-controller-auth.js';
-import {addPost, isUserSignedIn, getUserName, updateContent, updateLikePost } from '../firebase/controller-auth-login.js';
+import {addPost, isUserSignedIn, getUserName, updateLikePost } from '../firebase/controller-auth-login.js';
 
 export const btnGoogle = () => {
   googleLogin().then((result) => {
@@ -17,7 +17,9 @@ export const btnGoogle = () => {
     }
   });
   loginCheckIn();
+  window.location.hash = '#/home';
 };
+
 export const btnFacebook = () => {
   facebookLogin().then((result) => {
     const token = result.credential.accessToken;
@@ -32,6 +34,7 @@ export const btnFacebook = () => {
     }
   });
   loginCheckIn();
+  window.location.hash = '#/home';
 };
 
 /* Inicio de sesión por email y contraseña y registro*/
@@ -99,9 +102,6 @@ export const postSubmit = (element) => {
   }
 };
 
-export const updatePostOnClick = (post, messageUpdate) => {
-  return updateContent(post.id, messageUpdate);
-};
 
 export const updateLikeCount = (post, like) => {
   return updateLikePost(post.id, like);

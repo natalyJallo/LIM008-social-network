@@ -5,7 +5,7 @@ export const configFirebase = () => {
     authDomain: 'socialnetworking-d3f4e.firebaseapp.com',
     databaseURL: 'https://socialnetworking-d3f4e.firebaseio.com',
     projectId: 'socialnetworking-d3f4e',
-    storageBucket: 'socialnetworking-d3f4e.appspot.com',
+    storageBucket: 'socialnetwor  king-d3f4e.appspot.com',
     messagingSenderId: '378504101194'
   };
   firebase.initializeApp(config);

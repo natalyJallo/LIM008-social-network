@@ -1,6 +1,5 @@
 import { viewTemplates } from '../ui/templates.js';
 
-
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTemp('#/signIn');

@@ -1,4 +1,4 @@
-import {deletePost, editPosts} from '../firebase/controller-auth-login.js';
+import {editPosts, deletePost} from '../firebase/controller-auth-login.js';
 import {updateLikeCount} from '../view-controller/view-controller.js';
 /* Funcion con el maquetado de mis post*/
 export const postFunction = (post, uid) => {
@@ -6,7 +6,7 @@ export const postFunction = (post, uid) => {
       <div class='box-post-message'>
       <img src="img/usuario-3.png" alt='icono de perfil' class='img-menu align-2'>
       <h2 class='text-5'>${post.name} dice
-      ${post.privacy === 'publico' ? '<img src="img/mundo2.png" class="post-public" aria-hidden="true" >' : ' <img src="img/privado2.png" class="post-private" aria-hidden="true" >'}</h2>
+      ${post.privacy === 'Publico' ? '<img src="img/privado2.png" class="post-public" aria-hidden="true" >' : ' <img src="img/mundo1.png" class="post-private" aria-hidden="true" >'}</h2>
       <textarea class='content-edit' id='textarea-post-${post.id}' disabled >${post.content}</textarea>
       </div>
       <div class='count-like'><a id='btn-like-${post.id}' class='like'><img src='img/corazon.png' alt='icono de like' class='img-like align'></a>
@@ -20,13 +20,18 @@ export const postFunction = (post, uid) => {
       </div>
       <div id="btn-deleted-${post.id}"> 
       ${post.uid === uid ? '<button class="btn-post btn-edit" >Eliminar</button>' : ''}  
-      // </div> </div>`;
+      </div> </div>
+      `
+      ;
   let postList = document.createElement('div');
   postList.setAttribute('id', `id-${post.id}`);
   postList.innerHTML = tmp;
 
   const btnDeletePost = postList.querySelector(`#btn-deleted-${post.id}`);
-  btnDeletePost.addEventListener('click', () => deletePost(post.id));
+  btnDeletePost.addEventListener('click', () => {
+    alert('¿Desea eliminar la publicación?');
+    deletePost(post.id); 
+  });
 
   const btnLikePost = postList.querySelector(`#btn-like-${post.id}`);
   btnLikePost.addEventListener('click', () => {
