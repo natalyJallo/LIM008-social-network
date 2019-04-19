@@ -1,5 +1,6 @@
 import {editPosts, deletePost} from '../firebase/controller-auth-login.js';
 import {updateLikeCount} from '../view-controller/view-controller.js';
+
 /* Funcion con el maquetado de mis post*/
 export const postFunction = (post, uid) => {
   const tmp = `<div class='box-post large2'>

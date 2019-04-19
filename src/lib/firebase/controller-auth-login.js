@@ -85,3 +85,13 @@ export const updateProfile = (name, lastName) => {
 export const editPosts = (idPost, textNewNote) => firebase.firestore().collection('posts').doc(idPost).update({
   content: textNewNote,
 });
+
+// export const isUserSignedIn = () => {
+//   const uid = localStorage.getItem('uid');
+//   return !!uid;
+// };
+
+export const getUserUid = () => {
+  const user = firebase.auth().currentUser;
+  return user ? user.uid : null; 
+};

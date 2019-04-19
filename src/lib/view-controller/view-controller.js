@@ -1,4 +1,4 @@
-import { facebookLogin, googleLogin} from '../firebase/controller-auth-apis.js';
+import { facebookLogin, googleLogin} from '../firebase/controller-auth.js';
 import {loginCall, loginCheckIn, registerAcccount, validateloginForm, validationPost} from './view-controller-auth.js';
 import {addPost, isUserSignedIn, getUserName, updateLikePost } from '../firebase/controller-auth-login.js';
 

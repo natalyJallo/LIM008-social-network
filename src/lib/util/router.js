@@ -1,10 +1,14 @@
 import { viewTemplates } from '../ui/templates.js';
+// import { isUserSignedIn} from '../firebase/controller-auth-login.js';
 
 
 const changeTmp = (hash) => {
+  // if (isUserSignedIn()) {
   if (hash === '#/' || hash === '' || hash === '#') {
-    return viewTemp('#/signIn');
-  } else if (hash === '#/signUp' || hash === '#/home') {
+    return viewTemp(hash);
+  } else if (hash === '#/home' || hash === '#/signin') {
+    return viewTemp(hash);
+  } else if (hash === '#/' || hash === '' || hash === '#' || hash === '#/signUp') {
     return viewTemp(hash);
   } else {
     return viewTemp('#/signIn');

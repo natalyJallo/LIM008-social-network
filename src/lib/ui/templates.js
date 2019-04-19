@@ -1,7 +1,7 @@
 import {closeSessionCall } from '../view-controller/view-controller-auth.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from '../view-controller/view-controller.js';
 import {getPosts, isUserSignedIn, getPrivPosts} from '../firebase/controller-auth-login.js';
-import {postFunction} from '../ui/template-posts.js';
+import {postFunction} from '../ui/template-post.js';
 
 // template de inicio de sesion, registro y pagina principal de la red social
 export const viewTemplates = {
