@@ -1,57 +1,55 @@
-import {signInUser, loginAuth, closeSignIn, signUpUser, updateProfile} from '../firebase/controller-auth-login.js';
+import {signInUser, loginAuth, closeSignIn, signUpUser, updateProfile, deletePost} from '../firebase/controller-auth-login.js';
 
-export const loginCall = (email, password, invalid) => {
-  signInUser(email, password).catch((error) => {
-    const errorCode = error.code;  
-    const errorMessage = error.message;
-    invalid.innerHTML = errorCode;
-    invalid.innerHTML = errorMessage;
-    invalid.innerHTML = 'El email o la contraseña son inválidos.';
-  });
+/* Funcion de inicio de sesion Firebase*/
+export const loginCall = (email, password) => {
+  if (signInUser(email, password)) {
+    return {
+      condition: true
+    };
+  } else {
+    return {
+      condition: false,
+      message: 'El email y password sin invalidos'
+    };
+  }
 };
 
 // para observar los datos del usuario que inició sesión.
-export const loginCheckIn = (error) => {
+export const loginCheckIn = (callback) => {
   loginAuth(() => {
     const user = firebase.auth().currentUser;
-    const messageUserNoRegister = error;
     if (user !== null) {
       const emailUser = user.email;
-      window.location.hash = '#/home';
+      return callback(true);
     } else {
-      messageUserNoRegister.innerHTML = 'No esta registrado todavia';
+      return callback(false);
     }
   });
-};   
+};
 
 /* Funcion de cerrar sesion de Firebase*/
 export const closeSessionCall = () => {
   closeSignIn().then(() => {
   }).catch((error) => error);
 };
+
 /* Funcion de registro de Firebase*/
-export const registerAcccount = (email, password, name, lastName, nickName, country, errorText) => {
+export const registerAcccount = (email, password, name, lastName, nickName, country) => {  
   signUpUser(email, password)
     .then(result => {
       const configuration = {
-        url: 'http://127.0.0.1:5500/src/'
+        url: 'https://micaelasuarezcortez.github.io/LIM008-social-network/src/'
       };
-      result.user.sendEmailVerification(configuracion);
-      addData(email, password, name, lastName, nickName, country, errorText);
+      let uidNumber = firebase.auth().currentUser.uid;
+      addData(email, password, name, lastName, nickName, country, uidNumber);
       updateProfile(name, lastName);
       firebase.auth().signOut();
       result.user.sendEmailVerification(configuration);
-    }).catch((error) => {
-      console.log('registerAccount fail');
-      const errorMessage = error.message;
-      errorText.innerHTML = 'Error :' + errorMessage;
     });
+};
 
 
-export const addData = (email, password, name, lastName, nickName, country, errorText) => {
-  console.log('Entro a addData');
-  let uidNumber = firebase.auth().currentUser.uid;
-  console.log(uidNumber);
+export const addData = (email, password, name, lastName, nickName, country, uidNumber) => {
   return firebase.firestore().collection('users').doc(uidNumber).set({
     uid: uidNumber,
     email: email,
@@ -60,12 +58,6 @@ export const addData = (email, password, name, lastName, nickName, country, erro
     lastName: lastName,
     nickName: nickName,
     country: country
-  }).catch(error => {
-    errorText.innerHTML = 'Hubo un error en su registro';
-    console.error('Error writing document: ', error);    
-    console.log('Registro en base de datos no exitoso');
-  }).then(result => {
-    console.log('Registro en base de datos exitoso');
   });
 };
 
@@ -75,42 +67,51 @@ export const validateloginForm = (email, password, error) => {
   if (password !== '' & email !== '') {
     if (regEx.test(email)) {
       if (password.length >= 6) {
-        return true;
+        return {
+          condition: true};
       } else {
-        error.innerHTML = 'Contraseña mayor a 6 caracteres';
-        return false;
+        return {
+          condition: false,
+          message: 'Contraseña mayor a 6 caracteres'
+        };
       }
     } else {
-      error.innerHTML = 'Ingrese su email correcto';
-      return false;
-    };
+      return {
+        condition: false,
+        message: 'Ingrese su email correcto'
+      };
+    }
   } else {
-    error.innerHTML = 'Ingrese un email y un password';
-    return false;
+    return {
+      condition: false,
+      message: 'Ingrese un email y un password'
+    };
   };
 };
 
 // Funcion para validar de que no se publique un post vacio
-export const validationPost = (post, error) => {
+export const validationPost = (post) => {
   let postValue = post.trim();
   if (postValue === '') {
-    const message = 'No puedes publicar algo vacio';
-    error.innerHTML = message;
-    return false;
+    return {
+      condition: false,
+      message: 'No puedes publicar algo vacio'
+    };
   } else {
-    return true;
+    return {condition: true};
   }
 };
 
-export const postDate = (date) => {
-  let month = '' + (date.getMonth() + 1);
-  let day = '' + date.getDate();
-  let year = date.getFullYear();
+export const deleteConfirmation = (post) => {
+  const templ = `<div class='modal'>
+  <div class='modal-confirm'><h2 class='message-confirm'>Estas seguro de quieres eliminar esta publicación</h2>
+  </div>
+  <button type='button' id='btn-confirm' class='btn-edit'>Aceptar</button></div>`;
+  const containerModal = document.getElementById('container-modal');
+  containerModal.innerHTML = templ;
   
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-    
-  return [day, month, year].join('/');
+  const btnConfirmDelete = containerModal.querySelector('#btn-confirm');
+  btnConfirmDelete.addEventListener('click', () => {
+    deletePost(post);
+  });
 };
-
-

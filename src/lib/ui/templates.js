@@ -1,16 +1,17 @@
 import {closeSessionCall } from '../view-controller/view-controller-auth.js';
 import {btnFacebook, btnGoogle, btnSignIn, btnRegister, postSubmit} from '../view-controller/view-controller.js';
-import { getPosts, isUserSignedIn} from '../firebase/controller-auth-login.js';
+import {getPosts, isUserSignedIn, getPrivPosts} from '../firebase/controller-auth-login.js';
 import {postFunction} from '../ui/template-posts.js';
 
 // template de inicio de sesion, registro y pagina principal de la red social
 export const viewTemplates = {
   signIn: () => { 
-    const tmpl = `<div id='login-form' class='login-form'>
-                <img src='img/sim.png' class='img-login'>
+    const tmpl = `<div id='login-form' class='form-network'>
+                <div class='login-form space'>
+                <img src='img/logo2.png' class='img-login'>
                 <h1 class='text-logo style-logo'>JoinClude</h1>
                 <h3 class='style-login top'>LOGIN</h3>
-                <fieldset>
+                <div class='field'>
                 <div class='login-user'>
                 <label for='input-email'><img src='img/usuario2.png' class='img-user login-user'></label>
                 <input type='email' id='input-email' class='input-email' placeholder='email' required></input>
@@ -18,14 +19,14 @@ export const viewTemplates = {
                 <label for='input-password'><img src='img/bloquear-1.png' class='img-user login-user'></label>
                 <input type='password' id='input-password'class='input-email' placeholder='contraseña' minlength='6' required></input>
                 <span id='error-password'></span>
-                </fieldset>
+                </div>
                 <h3 id='error-text' class='message-error'></h3>
                 <div class='btn-center'><button type='button' id='log-in-btn' class='btn-color singIn'>Ingresar</button></div>
                 <h4 class='text-register'>O ingresa con :</h4>
                 <button type='button' id='btn-facebook' class='btn-social-net'></button>
                 <button type='button' id='btn-google' class='btn-social-net'></button>
                 <h4 class='text-register'>Si no estas registrado,<br><span id='sign-up-btn' class='style-rgtr'>unete.</span></h4>
-                </div>`;
+                </div></div>`;
     const element = document.createElement('form');
     element.innerHTML = tmpl;
 
@@ -51,8 +52,8 @@ export const viewTemplates = {
   },
 
   signUp: () => {
-    const tmpl = `<div class='login-form' id='sign-up'>
-                <h3 class='style-login style-register'>REGISTRATE</h3>
+    const tmpl = `<div class='login-form form-signUp' id='sign-up'>
+                <h3 class='style-login'>REGISTRATE</h3>
                 <i class='label-form'><img src='img/usuario2.png' class='img-icon login-user'></i>
                 <input type='text' id='enter-name' class='enter-data' placeholder='Nombres' required> 
                 <i class='label-form'><img src='img/usuario2.png' class='img-icon login-user'></i>
@@ -71,7 +72,7 @@ export const viewTemplates = {
                 <p id='error-text-sign-up' class='error-text-sign-up'></p>
                 </div>`;
     const element2 = document.createElement('form');
-    element2.setAttribute('class', 'form-signUp');
+    element2.setAttribute('class', 'container form-signUp');
     element2.innerHTML = tmpl;
                 
     const btnSendData = element2.querySelector('#send-data-btn');
@@ -83,30 +84,30 @@ export const viewTemplates = {
   },
   
   home: () => {
-    const tmpl = `<header class='header-page'>
-                  <div><img class='img-logo  align top' src='img/logo.png' alt='logo-feminista'>
+    const tmpl = `<header class='header-page'><div>
+                  <div class='logo-page'><img class='img-logo  align top' src='img/logo.png' alt='logo-feminista'>
+                  <h1 class='text-logo  align text-logo-header space2'>JoinClude</h1></div>
                   <input class='menu-bar' type='checkbox' id='menu-bar'>
                   <label class='icon-menu' for='menu-bar'><img src='img/boton-menu.png' alt='icono de menu' class='img-menu  align top'></label>
                   <nav class='menu-nav'>
                     <ul class='menu-ul'>
-                      <li class='li-menu'><a class='profile'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'><h2 class='text-4 margin'>Perfil</h2></a>
-                      <ul>Datos Personales</ul>
-                      <li>
-                      </li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 class='text-3'>Posts Privados</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-3'>Eventos</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-3'>Grupos</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-3'>Comunidades</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-3'>Apoyo Legal</h2></a></li>
-                      <li class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-3'>Apoyo Psicologico</h2></a></li>
-                      <li class='li-menu2'><a class='items' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-3'>Salir</h2></a></li>
+                      <li class='li-menu'><a class='profile'><h2 class='text-4 margin'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'>Perfil</h2></a></li>
+                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "public-stories" class='text-3'>Historias</h2></a></li>
+                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "my-stories" class='text-3'>Historias de mis amigos</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-6'>Historias Publicas</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-6'>Grupos</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-6'>Comunidades</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2' href='https://www.gob.pe/479-denunciar-violencia-familiar-y-sexual' target='_blank'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-6'>Apoyo Legal</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-6'>Apoyo Psicologico</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-6'>Salir</h2></a></li>
                     </ul>
-                  </nav><h1 class='text-logo  align text-logo-header'>JoinClude</h1></div>
+                  </nav></div>
                   </header>
                   <div class='' id='log-out'>
-                  <h1 class='text-3 text-welcome'>Bienvenido :</h1>
+                  <h1 class='text-3 text-welcome'></h1>
                   </div>
-                  <div class='box-post large'>
+                  <div class='model-post'>
+                  <div class='box-post large3'>
                   <textarea class='box-message' name='post-input' id='post-input' cols='50' rows='10' placeholder = "Agrega un post" required></textarea>
                   <h3 id='post-error' class='message-error msg-post'></h3>
                   <select id='privacy-selector' class='select-privacy'>
@@ -114,34 +115,57 @@ export const viewTemplates = {
                     <option value='Privado'>Privado</option>
                   </select>
                   <button id='btn-posts' class='btn-post btn-color'>Publicar</button>
-                </div>
-                <div id='post-container' class='list-posts'></div>
+                </div></div>
+                <ul id='post-container' class='list-posts'></ul>
                 `;
     const section = document.createElement('header');
     section.innerHTML = tmpl;
-
-    
+                  
     /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos */
     const btnPost = section.querySelector('#btn-posts');
     btnPost.addEventListener('click', () => {
       postSubmit(section);
     });
-
-    const container = section.querySelector('#post-container');
-    getPosts((posts) => {
-      container.innerHTML = '';
+    const postContainer = section.querySelector('#post-container');    
+    
+    const privPostBtn = section.querySelector('#my-stories');
+    const btnCloseSession = section.querySelector('#log-out-btn');
+            
+    getPosts((posts) => {  
+      postContainer.innerHTML = '';
       posts.forEach(post => {
-        console.log(post);
-        container.appendChild(postFunction(post));
+        const uid = isUserSignedIn();
+        postContainer.appendChild(postFunction(post, uid));
       });
     });
     
-    const btnCloseSession = section.querySelector('#log-out-btn');
+    const publicPostBtn = section.querySelector('#public-stories');
+    publicPostBtn.addEventListener('click', () => {
+      document.location.reload();      
+      window.location.hash = '#/home';
+    });
+            
+    privPostBtn.addEventListener('click', () => {
+      console.log('hola');
+      
+      getPrivPosts((posts) => {  
+        console.log(posts);
+        
+        postContainer.innerHTML = '';
+        posts.forEach(post => {
+          console.log(post);
+
+          const uid = isUserSignedIn();
+          postContainer.appendChild(postFunction(post, uid));
+        });
+      });
+    });
+                
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
       window.location.hash = '#/signIn';
     });
-
+            
     return section;
-  },
+  }
 };

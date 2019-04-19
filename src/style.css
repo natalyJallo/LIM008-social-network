@@ -1,372 +1,435 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 * {
-  margin: 0;
-  padding: 0;
-/*   box-sizing: border-box;
- */}
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
 /* Propiedades generales */
 .container {
 top: 0px;
 bottom: 0px;
+background-image: url(img/fondo.jpg); 
+background-size: cover;
+background-attachment: fixed;
+padding-bottom: 12px;
 }
-body {   
-  font-family: 'Open Sans', sans-serif; 
+body {  
+ font-family: 'Open Sans', sans-serif; 
 } 
 h2{
-  color: #000;
-  text-align: left;
-  letter-spacing: 0.1em;
-  font-size: 19px;
-  font-weight: lighter;
+ color: #000;
+ text-align: left;
+ letter-spacing: 0.1em;
+ font-size: 19px;
+ font-weight: lighter;
 } 
-
 /* Estilos para la seccion de inicio de sesion */
-.login-form {
-  border: 1px black;
-  width: 100%;
-  margin: auto;
-  min-width: 250px;
-  max-width: 380px;
-  background-color: #E9ACF6;
-  border-radius: 12px;
-  height: 100%;
-  position: absolute;
+.form-network{
+  display: flex;
+  align-items: center;
 }
-.login-form > fieldset {
-  display: grid;
-  grid-template-columns: 100px auto;
-  border: none;
+.login-form {
+ border: 1px black;
+ width: 100%;
+ margin: auto;
+ min-width: 250px;
+ max-width: 380px;
+ background-color: #E9ACF6;
+ border-radius: 12px;
+ height: 100%;
+}
+.space {
+  margin-top: 20px;
+  margin-bottom: 22px;
 }
 .img-login {
-  margin-left: 100px;
-  margin-top: 70px;
-  width: 16%
+ margin-left: 100px;
+ margin-top: 70px;
+ width: 16%
 }
 .text-logo {
-  color: #fff;
-  width: 100px;
-  float: right;
+ color: #fff;
+ width: 100px;
+ float: right;
 }
 .style-logo {
-  margin-right: 100px;
-  margin-top: 110px;
-  font-size: 20px;
+ margin-right: 100px;
+ margin-top: 110px;
+ font-size: 20px;
 }
 .top {
-  margin-top: 10px;
+ margin-top: 10px;
 }
 .login-user {
-  margin-left: 29px;
+  margin-left: 35px;
 }
 .img-user {
-  width: 20px;
-  height: 20px;
+ width: 20px;
+ height: 20px;
 }
 .input-email {
-  padding: 5px 5px 5px 17px;
-  width: 220px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  background-color: #fff;
-  color: #000;
-  margin-right: 15px;
-  border: 1px solid #E9ACF6;
+ padding: 5px 5px 5px 17px;
+ width: 220px;
+ margin-bottom: 15px;
+ border-radius: 10px;
+ background-color: #fff;
+ color: #000;
+ margin-right: 15px;
+ border: 1px solid #E9ACF6;
 }
 .message-error {
-  width: 170px;
-  height: 30px;
-  font-size: 10px;
-  text-align: center;
-  margin: auto;
-  color: purple;
-  font-family: 'Montserrat', sans-serif;
+ width: 170px;
+ height: 30px;
+ font-size: 10px;
+ text-align: center;
+ margin: auto;
+ color: purple;
+ font-family: 'Montserrat', sans-serif;
 }
 .btn-center {
-  width: 100%;
-  margin-bottom: 10px;
-  float: none;
-  text-align: center;
+ width: 100%;
+ margin-bottom: 10px;
+ float: none;
+ text-align: center;
 }
 .btn-color {
-  background-color:#9D66A9;
-  border: #9D66A9;
+ background-color:#9D66A9;
+ border: #9D66A9;
 }
 .singIn {
-  width: 120px;
-  height: 28px;
-  border-radius: 10px;
-  color: white;
-  letter-spacing: 1px;
-  cursor: pointer;
+ width: 120px;
+ height: 28px;
+ border-radius: 10px;
+ color: white;
+ letter-spacing: 1px;
+ cursor: pointer;
 }
 .text-register {
-  text-align: center;
-  font-weight: lighter;
-  margin-bottom: 15px;
+ text-align: center;
+ font-weight: lighter;
+ margin-bottom: 15px;
 }
 .btn-social-net{
-  cursor: pointer;
-  height: 65px;
-  width: 65px;
-  padding-bottom: 2px; 
-  border: none;
-  margin-left: 75px;
-  margin-bottom: 10px;
+ cursor: pointer;
+ height: 65px;
+ width: 65px;
+ padding-bottom: 2px; 
+ border: none;
+ margin-left: 75px;
+ margin-bottom: 10px;
 }
 #btn-facebook {
-  background: url("img/facebook2.png") no-repeat scroll;
+ background: url("img/facebook2.png") no-repeat scroll;
 }
 #btn-google {
-  background: url("img/google.png") no-repeat; 
+ background: url("img/google.png") no-repeat; 
 }
 .style-rgtr {
-  text-decoration: underline;
-  cursor: pointer;
+ text-decoration: underline;
+ cursor: pointer;
 }
-
 /* Estilos para la seccion de registrar */
 .form-signUp {
-  background-image: url(img/58930.jpg);
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+ padding-top: 40px;
 }
 .style-login{
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 20px;
-  font-weight: lighter;
+ text-align: center;
+ margin-bottom: 20px;
+ font-size: 20px;
+ font-weight: lighter;
 }
 .style-register {
-  margin-top: 70px;
+ margin-top: 70px;
 }
 .label-form {
-  width: 25px;
-  margin-left: 15px;
-  margin-right: 5px;
+ width: 25px;
+ margin-left: 15px;
+ margin-right: 5px;
 }
 .img-icon {
-  width: 25px;
-  height: 25px;
+ width: 25px;
+ height: 25px;
 }
 .enter-data {
-  border-radius: 8px;
-  width: 220px;
-  height: 35px;
-  padding-left: 10px;
-  color: #9C9797;
-  border: 1px;
-  margin-bottom: 13px;
+ border-radius: 8px;
+ width: 220px;
+ height: 35px;
+ padding-left: 10px;
+ color: #9C9797;
+ border: 1px;
+ margin-bottom: 13px;
 }
 .error-text-sign-up {
-  width: 200px;
-  margin: auto;
-  height: 30px;
+ width: 200px;
+ margin: auto;
+ height: 30px;
 }
-
 /* ESTILOS PARA LA PAGINA PRINCIPAL DE LA RED SOCIAL */
 /* estilos para el encabezado de la pagina */
 .header-page{
-  background-color: #9D66A9;
-  width: 100%;
-  height: 50px;
+ background-color: #9D66A9;
+ width: 100%;
+ height: 50px;
 }
 .img-logo {
-  width: 30px;
-  height: 35px;
-  margin-left: 20px;
-  margin-right: 10px;
+ width: 30px;
+ height: 35px;
+ margin-left: 20px;
+ margin-right: 10px;
 }
+.img-log3{
+  width: 30px;
+ height: 35px;
+ margin-left: 60px;
+ margin-right: 10px;
+}
+
 .align {
-  margin-right: 10px;
+ margin-right: 10px;
 }
 .text-logo-header {
-  font-size: 19px;
-  margin-top: 17px;
+ font-size: 19px;
+ margin-top: 17px;
 }
 
 /* Estilos para el barra de navegacion de la pagina */
 .menu-bar {
-  display: none;
+ display: none;
 }
 .menu-bar:checked ~ .menu-nav {
-  transform:  translateX(0%);
+ transform: translateX(0%);
 }
 .menu-nav {
-  position: absolute;
-  top: 50px;
-  left: 0px;
-  width: 100%;
-  transform: translateX(-100%);
-  transition: all 0.3s;
-  background: rgb(244, 204, 248);
+ position: absolute;
+ top: 50px;
+ left: 0px;
+ width: 100%;
+ transform: translateX(-100%);
+ transition: all 0.3s;
+ background: rgb(244, 204, 248);
 }
 .icon-menu {
-  display: block;
-  cursor: pointer;
-  float: right;
-  margin-left: 150px;
+ display: block;
+ cursor: pointer;
+ float: right;
  }
 .img-menu {
-  width: 30px;
-  height: 30px;
+ width: 30px;
+ height: 30px;
 }
 .menu-ul{
-  margin: 0;
-  list-style: none;
-  padding: 0;
-  display: block;
-  justify-content: center;
-  height: 700px;
+ margin: 0;
+ list-style: none;
+ padding: 0;
+ display: block;
+ justify-content: center;
+ height: 700px;
 }
 .li-menu {
-  margin: 20px 30px;
+ margin: 20px 30px;
 }
-
 .items {
-  width: 250px;
-  height: 60px;
+ width: 250px;
+ height: 60px;
+}
+.items-2 {
+ margin-left: 35px;
 }
 .img-logo-2 {
-  width: 60px;
-  height: 60px;
-  margin-left: 10px;
+ width: 60px;
+ height: 60px;
+ margin-left: 10px;
 }
 .margin {
-  margin-top: 30px;
+ margin-top: 30px;
 }
 .text-4 {
-  width: 140px;
-  float: right;
-  margin-right: 70px;
+  width: 100%;
   font-size: 20px;
 }
 .text-3 {
-  width: 140px;
-  margin: auto;
+ width: 140px;
+ margin: auto;
 }
-
+.text-6 {
+ width: 140px;
+ float: right;
+ margin-top: 15px;
+ margin-right: 120px;
+}
+.li-menu2 {
+ margin-bottom: 30px;
+ width: 100%;
+}
 /* Estilos para publicar los posts */
 .box-post{
-  width: 300px;
-  background-color:  rgb(244, 204, 248);;
-  padding: 20px 15px;
-  border-radius: 5px;
+ width: 300px;
+ background-color: rgb(244, 204, 248);;
+ padding: 20px 15px;
+ border-radius: 5px;
+ width: 380px;
+}
+.model-post {
+ margin: auto;
+ width: 380px;
+ margin-top: 20px;
+}
+.large3 {
+ height: 140px;
+ margin-left: 15px;
 }
 .text-welcome {
-  font-size: 20px;
-  text-align: center;
+ font-size: 20px;
+ text-align: center;
 }
 .large {
-  height: 140px;
-  margin-left: 30px;
+ height: 140px;
+ margin-left: 30px;
 }
 .box-message{
-  width: 270px;
-  height: 70px;
-  padding: 5px 10px;
-  font-family: 'Montserrat', sans-serif;
-  border-radius: 5px;
-  border: 1px;
+ width: 99%;
+ height: 70px;
+ padding: 5px 10px;
+ font-family: 'Montserrat', sans-serif;
+ border-radius: 5px;
+ border: 1px;
 }
 .msg-post{
  height: 10px;
 }
 .select-privacy {
-  border-radius: 5px;
-  width: 80px;
-  height: 22px;
-  border: white;
-  margin-left: 93px;
+ border-radius: 5px;
+ width: 80px;
+ height: 22px;
+ border: white;
+ margin-left: 93px;
 }
 .btn-post {
-  width: 80px;
-  height: 20px;
-  margin-left: 10px;
-  border-radius: 5px;
-  color: white;
-  letter-spacing: 1px;
+ width: 80px;
+ height: 20px;
+ margin-left: 10px;
+ border-radius: 5px;
+ color: white;
+ letter-spacing: 1px;
 }
-
+.post-private {
+ width: 10px;
+ height: 10px;
+ margin-top: 5px;
+}
+.text-2 {
+ color: #000;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  font-weight: lighter;
+  float: right;
+  margin-right: 115px;
+  padding-top: 10px;
+}
 /* Estilos para los posts */
 .large2 {
-  height: 195px;
-  margin-bottom: 10px;
+ height: 195px;
+ margin-bottom: 10px;
 }
 .box-post-message{
-  width: 270px;
-  height: 140px;
+ width: 100%;
+ height: 135px;
   background-color: white;
   margin-bottom: 10px;
 }
 .align-2 {
-  margin: 10px 10px;
+ margin: 10px 10px;
 }
 .text-5 {
-  font-size: 10px;
-  width: 120px;
-  float: right;
-  margin-right: 100px;
-  margin-top: 15px;
+ font-size: 10px;
+ width: 120px;
+ float: right;
+ margin-right: 90px;
+ margin-top: 15px;
+ width: 60%;
 }
 .icon-privacy {
-  font-size: 8px;
+ font-size: 8px;
 }
 .content-edit {
-  width: 250px;
-  height: 80px;
-  margin-left: 10px;
-  border: white;
+ width: 95%;
+ height: 80px;
+ margin-left: 10px;
+ border: white;
+ background-color: white;
 }
 .count-like {
-  width: 130px;
-  float: left;
+ width: 130px;
+ float: left;
 }
 .img-like {
-  width: 20px;
-  height: 20px;
-  margin-left: 5px;
+ width: 20px;
+ height: 20px;
+ margin-left: 5px;
 }
 .like-word {
-  font-size: 12px;
-  width: 40px;
-}
-.btn-edit-delete {
-  float: right;
-  width: 60px;
-  font-size: 11px;
+ font-size: 12px;
+ width: 40px;
 }
 .btn-edit-update {
-  display: none;
+ display: none;
 }
-
+.btn-edit {
+ float: right;
+ width: 60px;
+ font-size: 11px;
+ background-color: #9D66A9;
+ border: 1px solid #9D66A9;
+ margin-top: 3px;
+}
 /* Estilo para le muro de los posts */
 .list-posts {
-  margin-left: 30px;
-  margin-top: 10px;
+ margin-left: 30px;
+ margin-top: 10px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
-
+.logo-page {
+  width: 88%;
+  float: left;
+}
 /* Estilo para el pie de pagina */
 .footer{
-  position: fixed;
-  display: block;
-  left: 0;
-  bottom: 0;
-  width: 100%;  
-  background-color: #E9ACF6;
-  text-align: center;
-  color: #000;
+ position: fixed;
+ display: block;
+ left: 0;
+ bottom: 0;
+ width: 100%; 
+ background-color: #E9ACF6;
+ text-align: center;
+ color: #000;
 }
-
 @media (max-width:480px){
-  .login-form{
-    width: 100%
-  }
+ .login-form{
+  width: 100%
+ }
+ .box-message {
+  width: 99%;
+ }
+ .select-privacy {
+  margin-left: 170px;
+ }
+ .text-4 {
+  width: 160px;
+  font-size: 20px;
 }
+} 
 @media (max-width:768px){
-  .login-form{
-    width: 100%
-  }  
+ .login-form{
+  width: 100%
+ } 
+ .space2 {
+  width: 78%;
+}
+.logo-page {
+  width: 88%;
+  float: left;
+}
 }
