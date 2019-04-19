@@ -6,9 +6,7 @@ const changeTmp = (hash) => {
   // if (isUserSignedIn()) {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTemp(hash);
-  } else if (hash === '#/home' || hash === '#/signin') {
-    return viewTemp(hash);
-  } else if (hash === '#/' || hash === '' || hash === '#' || hash === '#/signUp') {
+  } else if (hash === '#/home' || hash === '#/signin' || hash === '#/signUp' || hash === '#/welcome') {
     return viewTemp(hash);
   } else {
     return viewTemp('#/signIn');

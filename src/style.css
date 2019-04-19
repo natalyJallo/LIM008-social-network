@@ -406,30 +406,35 @@ h2{
  text-align: center;
  color: #000;
 }
-@media (max-width:480px){
- .login-form{
-  width: 100%
- }
- .box-message {
-  width: 99%;
- }
- .select-privacy {
-  margin-left: 170px;
- }
- .text-4 {
-  width: 160px;
-  font-size: 20px;
+
+@media (min-width: 992px) { 
+
 }
-} 
+
 @media (max-width:768px){
- .login-form{
-  width: 100%
- } 
- .space2 {
-  width: 78%;
+  .login-form{
+    width: 100%
+  } 
+  .space2 {
+   width: 78%;
+  }
+  .logo-page {
+   width: 88%;
+   float: left;
+  }
 }
-.logo-page {
-  width: 88%;
-  float: left;
-}
-}
+@media (max-width:480px){
+    .login-form{
+     width: 100%
+    }
+    .box-message {
+     width: 99%;
+    }
+    .select-privacy {
+     margin-left: 170px;
+    }
+    .text-4 {
+     width: 160px;
+     font-size: 20px;
+   }
+} 

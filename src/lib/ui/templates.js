@@ -5,6 +5,33 @@ import {postFunction} from '../ui/template-post.js';
 
 // template de inicio de sesion, registro y pagina principal de la red social
 export const viewTemplates = {
+  welcome: () => {
+    const tmpl = `<div>
+                    <div>
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <img src="" alt="">
+                        <h1>JOINCLUDE</h1>
+                        <div>
+                            <h2>Una RED SOCIAL para mujeres donde podrá compartir 
+                            ideas, historias relacionadas al feminismo para 
+                            llegar a ser una comunidad fuerte que genere impacto 
+                            social en el mundo.</h2>
+                            <button type='button' id='btn-signin' class='btn-social-net'>Iniciar Sesion</button>
+                            <button type='button' id='btn-signup' class='btn-social-net'>Registrate</button>
+                        </div>
+                    </div>
+                </div>`;
+    const element = document.createElement('div');
+    element.innerHTML = tmpl;
+
+    const btnSignWelcome = element.querySelector('#btn-signin');
+    btnSignWelcome.addEventListener('click', () => {
+      window.location.hash = '#/signIn';
+    });
+    return element;
+  },
   signIn: () => { 
     const tmpl = `<div id='login-form' class='form-network'>
                 <div class='login-form space'>
@@ -92,11 +119,11 @@ export const viewTemplates = {
                   <nav class='menu-nav'>
                     <ul class='menu-ul'>
                       <li class='li-menu'><a class='profile'><h2 class='text-4 margin'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'>Perfil</h2></a></li>
-                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "public-stories" class='text-3'>Historias</h2></a></li>
-                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "my-stories" class='text-3'>Historias de mis amigos</h2></a></li>
+                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "public-stories" class='text-3'>Periodico</h2></a></li>
+                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "my-stories" class='text-3'>Blog</h2></a></li>
                       <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-6'>Historias Publicas</h2></a></li>
                       <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-6'>Grupos</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-6'>Comunidades</h2></a></li>
+                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-6'>Ministerio</h2></a></li>
                       <li class='li-menu2'><a class='items items-2' href='https://www.gob.pe/479-denunciar-violencia-familiar-y-sexual' target='_blank'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-6'>Apoyo Legal</h2></a></li>
                       <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-6'>Apoyo Psicologico</h2></a></li>
                       <li class='li-menu2'><a class='items items-2' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-6'>Salir</h2></a></li>
