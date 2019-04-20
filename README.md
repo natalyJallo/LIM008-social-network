@@ -117,7 +117,7 @@ En las redes sociales se abarcan diversidad de temas por eso vimos oportuno crea
 
   Fotos con nuestras entrevistadas.
   ------------------------------
-  ![Sin titulo](src/img/entrevistadas/papu.jpg)
+  ![Sin titulo](https://i.ibb.co/D4wpVs7/foto10.jpg)
 
   ![Sin titulo](src/img/entrevistadas/karla.jpg)
  
@@ -265,7 +265,7 @@ Luego de las entrevista  realizamos sketchs de cómo sería el producto teniendo
 
 El producto desarrollado sigue los lineamientos de diseño de la interfaz de usuario.
 
-![Sin titulo](https://nataly-jallo-ara.imgbb.com/)
+![Sin titulo](https://i.ibb.co/10FNDFx/red1.jpg)
 ![Sin titulo](https://i.ibb.co/6P5zj0f/red3.jpg)
 ![Sin titulo](https://i.ibb.co/wy1bn6W/red6.jpg)
 ![Sin titulo](https://i.ibb.co/Tkr9gpG/pagina-2.jpg)
