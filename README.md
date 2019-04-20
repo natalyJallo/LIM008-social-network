@@ -265,4 +265,7 @@ Luego de las entrevista  realizamos sketchs de cómo sería el producto teniendo
 
 El producto desarrollado sigue los lineamientos de diseño de la interfaz de usuario.
 
-![Sin titulo](src/img/prototipo-alta-fidelidad/prototipo-alta-fidelidad-figma.png)
+![Sin titulo](https://nataly-jallo-ara.imgbb.com/)
+![Sin titulo](https://i.ibb.co/6P5zj0f/red3.jpg)
+![Sin titulo](https://i.ibb.co/wy1bn6W/red6.jpg)
+![Sin titulo](https://i.ibb.co/Tkr9gpG/pagina-2.jpg)
