@@ -24,10 +24,104 @@ h2{
  font-size: 19px;
  font-weight: lighter;
 } 
+
+.section-welcome {
+ width: 100%;
+ height: 700px;
+ background-color: #F4DAEB;
+ height: 100vh;
+}
+
+.background-image {
+    width: 100%;
+    background-image: url("../src/img/fondo.jpg");
+    background-size: cover;
+}
+
+.hight {
+    height: 100vh;
+}
+
+.hight-2 {
+    height: 100%;
+}
+
+.logo-style {
+    margin: auto;
+    width: 450px;
+    margin-top: 100px;
+}
+
+.img-logo-welcome {
+    width: 60px;
+    margin-left: 80px;
+}
+.text-logo-welcome {
+    float: right;
+    margin-right: 90px;
+    margin-top: 30px;
+}
+
+.text-7 {
+    font-size: 20px;
+    width: 350px;
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.content-text {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.btn-welcome {
+    width: 150px;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    height: 50px;
+}
+.img-women{ 
+    width: 100%;
+}
+.nav {
+    height: 50px;
+    width: 200px;
+    color: #fff;
+}
+
+.nav-float {
+    float: right;
+    background-color:#9D66A9;
+    border: #9D66A9;
+    color: #fff;
+}
+.public{
+    width: 350px;
+    float: right;
+}
+.perfil {
+    width: 400px;
+}
+.home{
+    background-image: url("../src/img/fonfo-6.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.9;
+}
+
 /* Estilos para la seccion de inicio de sesion */
 .form-network{
   display: flex;
   align-items: center;
+  background-image: url("../src/img/fondo.jpg");
+  background-size: cover;
+  margin: auto;
+  padding-top: 60px;
 }
 .login-form {
  border: 1px black;
@@ -131,7 +225,8 @@ h2{
 }
 /* Estilos para la seccion de registrar */
 .form-signUp {
- padding-top: 40px;
+ padding-top: 80px;
+ padding-bottom: 50px;
 }
 .style-login{
  text-align: center;
@@ -215,8 +310,8 @@ h2{
  float: right;
  }
 .img-menu {
- width: 30px;
- height: 30px;
+ width: 40px;
+ height: 40px;
 }
 .menu-ul{
  margin: 0;
@@ -265,10 +360,10 @@ h2{
 /* Estilos para publicar los posts */
 .box-post{
  width: 300px;
- background-color: rgb(244, 204, 248);;
+ background-color: #E994C7;
  padding: 20px 15px;
  border-radius: 5px;
- width: 380px;
+ width: 100%;
 }
 .model-post {
  margin: auto;
@@ -276,7 +371,7 @@ h2{
  margin-top: 20px;
 }
 .large3 {
- height: 140px;
+ height: 240px;
  margin-left: 15px;
 }
 .text-welcome {
@@ -289,7 +384,7 @@ h2{
 }
 .box-message{
  width: 99%;
- height: 70px;
+ height: 150px;
  padding: 5px 10px;
  font-family: 'Montserrat', sans-serif;
  border-radius: 5px;
@@ -300,14 +395,14 @@ h2{
 }
 .select-privacy {
  border-radius: 5px;
- width: 80px;
- height: 22px;
+ width: 100px;
+ height: 30px;
  border: white;
  margin-left: 93px;
 }
 .btn-post {
- width: 80px;
- height: 20px;
+ width: 100px;
+ height: 30px;
  margin-left: 10px;
  border-radius: 5px;
  color: white;
@@ -329,24 +424,29 @@ h2{
 }
 /* Estilos para los posts */
 .large2 {
- height: 195px;
+ height: 280px;
  margin-bottom: 10px;
 }
 .box-post-message{
  width: 100%;
- height: 135px;
-  background-color: white;
-  margin-bottom: 10px;
+ height: 200px;
+ background-color: white;
+ margin-bottom: 10px;
+}
+.btn-posts-2{
+    width: 150px;
+    height: 40px;
+    background-color: #9D66A9;
 }
 .align-2 {
  margin: 10px 10px;
 }
 .text-5 {
- font-size: 10px;
+ font-size: 13px;
  width: 120px;
  float: right;
- margin-right: 90px;
- margin-top: 15px;
+ margin-right: 100px;
+ margin-top: 26px;
  width: 60%;
 }
 .icon-privacy {
@@ -354,10 +454,10 @@ h2{
 }
 .content-edit {
  width: 95%;
- height: 80px;
- margin-left: 10px;
+ height: 120px;
  border: white;
  background-color: white;
+ margin-left: 20px;
 }
 .count-like {
  width: 130px;
@@ -377,7 +477,7 @@ h2{
 }
 .btn-edit {
  float: right;
- width: 60px;
+ width: 80px;
  font-size: 11px;
  background-color: #9D66A9;
  border: 1px solid #9D66A9;
@@ -385,16 +485,18 @@ h2{
 }
 /* Estilo para le muro de los posts */
 .list-posts {
- margin-left: 30px;
- margin-top: 10px;
- display: flex;
- flex-direction: column;
- align-items: center;
+    margin-left: 14px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 .logo-page {
-  width: 88%;
+  width: 170px;
   float: left;
 }
+
 /* Estilo para el pie de pagina */
 .footer{
  position: fixed;
@@ -416,10 +518,10 @@ h2{
     width: 100%
   } 
   .space2 {
-   width: 78%;
+   width: 45%;
   }
   .logo-page {
-   width: 88%;
+   width: 50%;
    float: left;
   }
 }
@@ -437,4 +539,38 @@ h2{
      width: 160px;
      font-size: 20px;
    }
+   .align {
+    margin-right: 40px;
+   }
+   .select-privacy {
+    margin-left: 120px;
+    }
+    .count-like {
+        width: 60px;
+    }
+    align {
+        margin-right: 0px;
+    }
+    .img-like {
+        width: 20px;
+        height: 20px;
+        margin-left: 0px;
+    }
+    .align {
+        margin-right: 0px;
+    }
+    .btn-edit {
+        width: 70px;
+    }
+    .content-edit {
+        margin-left: 0px;
+        padding-left: 20px;
+    }
+    .text-5 {
+        font-size: 10px;
+        float: right;
+        margin-right: 180px;
+        margin-top: 26px;
+        width: 40%;
+    }
 } 

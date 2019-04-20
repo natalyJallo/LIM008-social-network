@@ -6,29 +6,35 @@ import {postFunction} from '../ui/template-post.js';
 // template de inicio de sesion, registro y pagina principal de la red social
 export const viewTemplates = {
   welcome: () => {
-    const tmpl = `<div>
-                    <div>
-                        <img src="" alt="">
+    const tmpl = `<div class="section-welcome row">
+                    <div class="col-7 img-women-2">
+                        <img src="../src/img/mujer5.jpg" alt="fondo de una mujer" class="img-women">
                     </div>
-                    <div>
-                        <img src="" alt="">
-                        <h1>JOINCLUDE</h1>
-                        <div>
-                            <h2>Una RED SOCIAL para mujeres donde podrá compartir 
+                    <div class="col-5 background-image">
+                        <div class="logo-style" >
+                            <img src="../src/img/logo2.png" alt="fondo rosado" class="img-logo-welcome" >
+                            <h1 class="text-logo-welcome">JOINCLUDE</h1></div>
+                        <div class="content-text">
+                            <h2 class="text-7">Una RED SOCIAL para mujeres donde podrá compartir 
                             ideas, historias relacionadas al feminismo para 
                             llegar a ser una comunidad fuerte que genere impacto 
                             social en el mundo.</h2>
-                            <button type='button' id='btn-signin' class='btn-social-net'>Iniciar Sesion</button>
-                            <button type='button' id='btn-signup' class='btn-social-net'>Registrate</button>
+                            <button type='button' id='btn-signin-welcome' class='btn-color btn-welcome'>Iniciar Sesion</button>
+                            <button type='button' id='btn-signup-welcome' class='btn-color btn-welcome'>Registrate</button>
                         </div>
                     </div>
                 </div>`;
     const element = document.createElement('div');
     element.innerHTML = tmpl;
 
-    const btnSignWelcome = element.querySelector('#btn-signin');
+    const btnSignWelcome = element.querySelector('#btn-signin-welcome');
     btnSignWelcome.addEventListener('click', () => {
       window.location.hash = '#/signIn';
+    });
+
+    const btnSignupWelcome = element.querySelector('#btn-signup-welcome');
+    btnSignupWelcome.addEventListener('click', () => {
+      window.location.hash = '#/signUp';
     });
     return element;
   },
@@ -54,7 +60,8 @@ export const viewTemplates = {
                 <button type='button' id='btn-google' class='btn-social-net'></button>
                 <h4 class='text-register'>Si no estas registrado,<br><span id='sign-up-btn' class='style-rgtr'>unete.</span></h4>
                 </div></div>`;
-    const element = document.createElement('form');
+    const element = document.createElement('div');
+    element.setAttribute('class', 'background-image hight');
     element.innerHTML = tmpl;
 
     const btn = element.querySelector('#log-in-btn');
@@ -98,8 +105,8 @@ export const viewTemplates = {
                 <div class='btn-center'><button type='button' id='send-data-btn' class='btn-color singIn top'> Registrarme</button></div>
                 <p id='error-text-sign-up' class='error-text-sign-up'></p>
                 </div>`;
-    const element2 = document.createElement('form');
-    element2.setAttribute('class', 'container form-signUp');
+    const element2 = document.createElement('div');
+    element2.setAttribute('class', 'form-signUp background-image hight-2');
     element2.innerHTML = tmpl;
                 
     const btnSendData = element2.querySelector('#send-data-btn');
@@ -111,41 +118,43 @@ export const viewTemplates = {
   },
   
   home: () => {
-    const tmpl = `<header class='header-page'><div>
-                  <div class='logo-page'><img class='img-logo  align top' src='img/logo.png' alt='logo-feminista'>
-                  <h1 class='text-logo  align text-logo-header space2'>JoinClude</h1></div>
-                  <input class='menu-bar' type='checkbox' id='menu-bar'>
-                  <label class='icon-menu' for='menu-bar'><img src='img/boton-menu.png' alt='icono de menu' class='img-menu  align top'></label>
-                  <nav class='menu-nav'>
-                    <ul class='menu-ul'>
-                      <li class='li-menu'><a class='profile'><h2 class='text-4 margin'><img class='img-logo-2 align top' src='img/usuario-3.png' alt='icono'>Perfil</h2></a></li>
-                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "public-stories" class='text-3'>Periodico</h2></a></li>
-                      <li  class='li-menu2'><a class='items'><img class='img-logo  align top' src='img/historia.png' alt='icono'><h2 id= "my-stories" class='text-3'>Blog</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/calendario.png' alt='icono'><h2 class='text-6'>Historias Publicas</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/grupo.png' alt='icono'><h2 class='text-6'>Grupos</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/mundo.png' alt='icono'><h2 class='text-6'>Ministerio</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2' href='https://www.gob.pe/479-denunciar-violencia-familiar-y-sexual' target='_blank'><img class='img-logo  align top' src='img/ley.png' alt='icono'><h2 class='text-6'>Apoyo Legal</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2'><img class='img-logo  align top' src='img/apoyar-3.png' alt='icono'><h2 class='text-6'>Apoyo Psicologico</h2></a></li>
-                      <li class='li-menu2'><a class='items items-2' id='log-out-btn'><img class='img-logo  align top' src='img/salir.png' alt='icono'><h2 class='text-6'>Salir</h2></a></li>
-                    </ul>
-                  </nav></div>
-                  </header>
-                  <div class='' id='log-out'>
-                  <h1 class='text-3 text-welcome'></h1>
-                  </div>
-                  <div class='model-post'>
-                  <div class='box-post large3'>
-                  <textarea class='box-message' name='post-input' id='post-input' cols='50' rows='10' placeholder = "Agrega un post" required></textarea>
-                  <h3 id='post-error' class='message-error msg-post'></h3>
-                  <select id='privacy-selector' class='select-privacy'>
+    const tmpl = `
+    <header class='header-page'>
+        <div>
+            <div class='logo-page'><img class='img-logo top' src='img/logo.png' alt='logo-feminista'>
+                <h1 class='text-logo  align text-logo-header space2'>JoinClude</h1>
+            </div>
+        <div class="dropdown nav nav-float ">
+            <button class="btn dropdown-toggle btn-color text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cuenta de Usuario
+            </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li id="public-stories" ><a class="dropdown-item" id=""  href="">Posts</a></li>
+            <li id="my-stories"><a class="dropdown-item" href="">Posts</a></li>
+            <li id="log-out-btn"><a class="dropdown-item" href="">Cerrar Sesion</a></li>
+         </div>
+        </div>
+    </header>
+    <div class='' id='log-out'>
+        <h1 class='text-3 text-welcome'></h1>
+    </div>
+    <div class='model-post col-8'>
+        <div class='box-post large3'>
+            <textarea class='box-message' name='post-input' id='post-input' cols='50' rows='10' placeholder = "Agrega un post" required></textarea>
+            <h3 id='post-error' class='message-error msg-post'></h3>
+            <div class="public">
+                <select id='privacy-selector' class='select-privacy'>
                     <option value='Público'>Publico</option>
                     <option value='Privado'>Privado</option>
-                  </select>
-                  <button id='btn-posts' class='btn-post btn-color'>Publicar</button>
-                </div></div>
-                <ul id='post-container' class='list-posts'></ul>
-                `;
-    const section = document.createElement('header');
+                </select>
+                <button id='btn-posts' class='btn-post btn-color'>Publicar</button></div>
+            </div>
+        </div>
+    <ul id='post-container' class='list-posts'></ul>
+
+  `;
+    const section = document.createElement('div');
+    section.setAttribute('class', 'home');
     section.innerHTML = tmpl;
                   
     /* Cuando hago click en publicar me ejecuta la funcion para obtener los datos */
@@ -153,11 +162,8 @@ export const viewTemplates = {
     btnPost.addEventListener('click', () => {
       postSubmit(section);
     });
-    const postContainer = section.querySelector('#post-container');    
-    
-    const privPostBtn = section.querySelector('#my-stories');
-    const btnCloseSession = section.querySelector('#log-out-btn');
-            
+
+    const postContainer = section.querySelector('#post-container');           
     getPosts((posts) => {  
       postContainer.innerHTML = '';
       posts.forEach(post => {
@@ -171,7 +177,8 @@ export const viewTemplates = {
       document.location.reload();      
       window.location.hash = '#/home';
     });
-            
+
+    const privPostBtn = section.querySelector('#my-stories');        
     privPostBtn.addEventListener('click', () => {
       console.log('hola');
       
@@ -187,7 +194,8 @@ export const viewTemplates = {
         });
       });
     });
-                
+     
+    const btnCloseSession = section.querySelector('#log-out-btn');
     btnCloseSession.addEventListener('click', () => {
       closeSessionCall();
       window.location.hash = '#/signIn';
