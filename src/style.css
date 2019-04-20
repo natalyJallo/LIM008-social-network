@@ -118,7 +118,7 @@ h2{
 .form-network{
   display: flex;
   align-items: center;
-  background-image: url("../src/img/fondo.jpg");
+  /* background-image: url("../src/img/fondo.jpg"); */
   background-size: cover;
   margin: auto;
   padding-top: 60px;
