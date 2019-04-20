@@ -5,7 +5,7 @@ import { viewTemplates } from '../ui/templates.js';
 const changeTmp = (hash) => {
   // if (isUserSignedIn()) {
   if (hash === '#/' || hash === '' || hash === '#') {
-    return viewTemp(hash);
+    return viewTemp('#/welcome');
   } else if (hash === '#/home' || hash === '#/signIn' || hash === '#/signUp' || hash === '#/welcome') {
     return viewTemp(hash);
   } else {
