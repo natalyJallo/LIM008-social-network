@@ -514,10 +514,6 @@ h2{
  color: #000;
 }
 
-@media (min-width: 992px) { 
-
-}
-
 @media (max-width:768px){
   .login-form{
     width: 100%

@@ -7,19 +7,19 @@ import {postFunction} from '../ui/template-post.js';
 export const viewTemplates = {
   welcome: () => {
     const tmpl = `<div class="section-welcome row">
-                    <div class="col-lg-7 col-md-7 img-women-2 col-sm-12">
+                    <div class="col-lg-7 col-md-7 img-women-2 col-sm-12 col-xl-7">
                         <img src="../src/img/mujer5.jpg" alt="fondo de una mujer" class="img-women">
                     </div>
-                    <div class="col-lg-5 col-md-5 background-image col-sm-12">
+                    <div class="col-lg-5 col-md-5 background-image col-sm-12 col-xl-5">
                         <div class="logo-style col-sm-10" >
                             <img src="../src/img/logo2.png" alt="fondo rosado" class="img-logo-welcome" >
                             <h1 class="text-logo-welcome">JOINCLUDE</h1></div>
-                        <div class="content-text col-sm-10">
-                            <h2 class="text-7 col-sm-10" >Una RED SOCIAL para mujeres donde podrá compartir 
+                        <div class="content-text col-sm-10 col-xl-10">
+                            <h2 class="text-7 col-sm-10 col-xl-10" >Una RED SOCIAL para mujeres donde podrá compartir 
                             ideas, historias relacionadas al feminismo para 
                             llegar a ser una comunidad fuerte que genere impacto 
                             social en el mundo.</h2>
-                            <div class="text-7 col-sm-10 center" >
+                            <div class="text-7 col-sm-10 col-xl-10 center" >
                             <button type='button' id='btn-signin-welcome' class='btn-color btn-welcome '>Iniciar Sesion</button>
                             <button type='button' id='btn-signup-welcome' class='btn-color btn-welcome '>Registrate</button>
                             </div>
